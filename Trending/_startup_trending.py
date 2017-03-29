@@ -36,9 +36,9 @@ class AllLang:
                 t = trending_html_parse.TrendingHtmlParser(s.text.encode('utf-8'))
                 _json = t._get_json()
                 # self.wfile.write(json.dumps(_json))
-                # f = open(filePath,'w')
-                # f.write(json.dumps(_json))
-                # f.close()
+                f = open(filePath,'w')
+                f.write(json.dumps(_json))
+                f.close()
                 return json.dumps(_json)
 def _get_time():
         return datetime.datetime.now().strftime('%Y-%m-%d')
