@@ -77,5 +77,5 @@ if __name__ == '__main__':
     #     # capture('https://github.com/atlassian/localstack')
         # _json = t._get_json()
     print 'Starting server, use <Ctrl-C> to stop'
-    server = SocketServer.TCPServer(('0.0.0.0', common.PORT), AutoReleaseRequestHandler)
+    server = SocketServer.TCPServer(('127.0.0.1', common.PORT), AutoReleaseRequestHandler)
     server.serve_forever()
