@@ -1,6 +1,7 @@
 import web
 import json
 from time import time
+import requests
 import common,logging,datetime,os,trending_html_parse
 urls = (
     '/all/','AllLang',
