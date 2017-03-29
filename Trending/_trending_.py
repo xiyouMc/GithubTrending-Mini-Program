@@ -42,7 +42,7 @@ class AutoReleaseRequestHandler(SimpleHTTPServer.SimpleHTTPRequestHandler):
                 f = open(filePath,'w')
                 f.write(json.dumps(_json))
                 f.close()
-        self.close_connection()      
+        return   
     def _get_time(self):
         return datetime.datetime.now().strftime('%Y-%m-%d')
     def do_POST(self):
@@ -65,7 +65,7 @@ class AutoReleaseRequestHandler(SimpleHTTPServer.SimpleHTTPRequestHandler):
         self.wfile.write('}')
         subprocess.Popen(command, stdout=subprocess.PIPE,
                          stderr=subprocess.STDOUT, shell=True)
-        self.close_connection()
+        return
 
 logging.warning("\n")
  
