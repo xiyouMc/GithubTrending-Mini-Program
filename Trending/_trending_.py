@@ -24,6 +24,7 @@ class AutoReleaseRequestHandler(SimpleHTTPServer.SimpleHTTPRequestHandler):
             b = f.read()
             f.close()
             self.wfile.write(b)
+            print 'Send Response!!!!'
         elif 'all' in self.path:
             filePath = self._get_time() + 'all.json'
             if os.path.exists(self._get_time() + 'all.json'):
