@@ -1,0 +1,8 @@
+<template name="video-cell">
+  <view class="video-cell" catchtap="cellTap">
+    <text class="cover" src="{{ item.link }}" mode="aspectFill" />
+    <text class="link">{{ item.link }}</text>
+    <text class="desc">{{ item.desc}}</text>
+    <text class="star">{{ item.stars }}</text>
+  </view>
+</template>

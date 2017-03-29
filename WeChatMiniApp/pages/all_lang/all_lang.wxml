@@ -1,0 +1,22 @@
+<view class="container">
+  <scroll-view scroll-top="{{scrollTop}}" scroll-y="true" style="height:{{scrollHeight}}px;"
+    class="list" bindscrolltolower="bindDownLoad" bindscroll="scroll" bindscrolltoupper="refresh">
+    <view class="item" wx:for="{{list}}" data-link="{{ item.link }}" catchtap="cellTap" >
+      <view class="best">
+        <text class="title">{{item.link}}</text>  
+      </view>
+      <view class="best">
+        <text class="description">{{item.desc}}</text>  
+      </view>
+      <view class="best">
+        <text class="stars">{{item.stars}}</text>  
+      </view>   
+      <view class="devide"/>
+    </view>
+  </scroll-view>
+  <view class="body-view">
+    <loading hidden="{{hidden}}" bindchange="loadingChange">
+      加载中...
+    </loading>
+  </view>
+</view>

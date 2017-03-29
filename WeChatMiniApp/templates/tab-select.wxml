@@ -1,0 +1,22 @@
+<template name="tab-select">
+  <view class="select">
+    <view
+      class="select-item {{ ayid === '27f' ? 'select-item-highlight' : '' }}"
+      data-ayid="{{ '27f' }}" catchtap="selectTab"
+    >
+      <text>搞笑</text>
+    </view>
+    <view
+      class="select-item {{ ayid === '27l' ? 'select-item-highlight' : '' }}"
+      data-ayid="{{ '27l' }}" catchtap="selectTab"
+    >
+      <text>舞蹈</text>
+    </view>
+    <view
+      class="select-item {{ ayid === '2X0' ? 'select-item-highlight' : '' }}"
+      data-ayid="{{ '2X0' }}" catchtap="selectTab"
+    >
+      <text >时尚</text>
+    </view>
+  </view>
+</template>

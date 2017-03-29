@@ -1,0 +1,23 @@
+.title{
+    color: #4876FF;
+    font-weight:bold;
+    margin:10px;
+    margin-bottom:5px; 
+    padding-bottom: 10px;
+}
+.description{
+    margin:50px;
+}
+.stars{
+    margin:10px;
+}
+.best {
+  /* iOS video-cell margin bug*/
+  padding-bottom: 10px;
+}
+
+.devide{
+    height:2px;
+    border:none;
+    border-top:2px dotted #185598;
+}

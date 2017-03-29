@@ -1,0 +1,7 @@
+<image src="{{ image_url }}" mode="widthFix"></image>
+
+ <view class="body-view">
+    <loading hidden="{{hidden}}" bindchange="loadingChange">
+      加载中...
+    </loading>
+  </view>
