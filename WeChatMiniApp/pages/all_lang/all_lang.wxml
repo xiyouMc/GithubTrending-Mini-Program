@@ -1,22 +1,37 @@
-<view class="container">
+<view>
+<!--<button class="primary" size="{{primarySize}}" loading="{{loading}}" plain="{{plain}}"
+        disabled="{{disabled}}" bindtap="select"> All></button>-->
+<view class="classname" bindtap="selectLanguage">
+ <text class = 'select'>All</text>
+<image class = 'jiantou'src="../../assets/jiantou.png">All</image>
+</view>
+       
+<view class="devide"/>
   <scroll-view scroll-top="{{scrollTop}}" scroll-y="true" style="height:{{scrollHeight}}px;"
-    class="list" bindscrolltolower="bindDownLoad" bindscroll="scroll" bindscrolltoupper="refresh">
+    class="list" bindscrolltolower="bindDownLoad" bindscroll="scroll"
+    enable-back-to-top="true" >
     <view class="item" wx:for="{{list}}" data-link="{{ item.link }}" catchtap="cellTap" >
       <view class="best">
         <text class="title">{{item.link}}</text>  
       </view>
-      <view class="best">
-        <text class="description">{{item.desc}}</text>  
+     
+       <view class="desc">
+        <text class="description">{{item.desc}}</text> 
+        <view class="jian" >></view> 
       </view>
-      <view class="best">
+     
+      
+      <view class="star">
         <text class="stars">{{item.stars}}</text>  
-      </view>   
+      </view>  
+
       <view class="devide"/>
     </view>
   </scroll-view>
   <view class="body-view">
     <loading hidden="{{hidden}}" bindchange="loadingChange">
-      加载中...
+      拼命加载中...
     </loading>
   </view>
+ 
 </view>

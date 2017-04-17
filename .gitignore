@@ -2,3 +2,5 @@
 *.json
 *.png
 *.html
+.DS_Store
+*.log

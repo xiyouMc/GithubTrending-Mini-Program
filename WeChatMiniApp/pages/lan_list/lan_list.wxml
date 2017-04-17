@@ -1,0 +1,10 @@
+<scroll-view scroll-top="{{scrollTop}}" scroll-y="true" style="height:{{scrollHeight}}px;"
+    class="list" bindscrolltolower="bindDownLoad" bindscroll="scroll"
+    enable-back-to-top="true" >
+    <view class="item" wx:for="{{list}}" data-link="{{ item.link }}" catchtap="cellTap" >
+     
+        <text class="description">{{item}}</text>  
+     
+      <view class="devide"/>
+    </view>
+  </scroll-view>

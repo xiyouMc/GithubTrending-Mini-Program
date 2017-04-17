@@ -2,13 +2,9 @@ from selenium import webdriver
 import threading,common,time,os
 def capture(url, save_fn="capture.png"):
     print url
-    browser = webdriver.PhantomJS() # Get local session of firefox
+    browser = webdriver.PhantomJS()
     browser.set_window_size(1200, 900)
     browser.get(url) 
-    for i in xrange(30):
-            if "scroll-done" in browser.title:
-                break
-            time.sleep(1)
     browser.save_screenshot(save_fn)
     browser.close()
 class TrendingHtmlParser():

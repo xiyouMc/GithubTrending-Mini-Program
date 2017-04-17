@@ -10,11 +10,11 @@ Page({
         const link = query.link
         this.setData({
             hidden:false
-        });
+        }); 
         const that = this
-        
+         
          wx.request({
-            url:"http://192.168.2.40:9988/" + 'capture' + link,
+            url:"http://123.206.111.247/" + 'capture' + link,
             success:function(res){
                 console.log('ressuess');
                 // hide()
@@ -26,9 +26,9 @@ Page({
             //     list : res.data
             // });
             // page ++;
-            console.log("http://192.168.2.40:9987/" + 'capture' + link);
+            console.log("http://123.206.111.247/" + 'capture' + link);
             that.setData({
-                image_url:"http://192.168.2.40:9987/" + 'capture' + link,
+                image_url:"http://123.206.111.247/" + 'capture' + link,
             })
             that.setData({
                 hidden:true
