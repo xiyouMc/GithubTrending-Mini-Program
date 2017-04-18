@@ -11,17 +11,18 @@ app = web.application(urls,globals())
 class Capture:
     def GET(self,rep):
             capture_png = rep.split('/')[-1] + '.png'
-            print capture_png
-            if not os.path.exists(capture_png):
-                trending_html_parse.capture(common.API.replace('trending',rep),capture_png)
-            f = open(capture_png,'rb')
-            b = f.read()
-            f.close()
+            print capture_png   
+            file_path = 'webp_pic/' + capture_png + '.webp'
+            if not os.path.exists(file_path):
+                file_path = trending_html_parse.capture(common.API.replace('trending',rep),capture_png)
+            # f = open(capture_png,'rb')
+            # b = f.read()
+            # f.close()
             # self.wfile.write(b)
             print 'Send Response!!!!'
-            web.header('Content-length:',str(len(b)))
-            web.header('Cache-Control','no-cache')
-            return b
+            # web.header('Content-length:',str(len(b)))
+            # web.header('Cache-Control','no-cache')
+            return file_path
 class AllLang:
     def GET(self):
             logging.warning("======= GET STARTED =======")

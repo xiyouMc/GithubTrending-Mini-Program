@@ -1,6 +1,7 @@
 from selenium import webdriver
 # from selenium.webdriver.firefox.firefox_binary import FirefoxBinary
 import threading,common,time,os
+from PIL import Image
 def capture(url, save_fn="capture.png"):
     print url
     browser = webdriver.PhantomJS('PhantomJS/phantomjs')
@@ -8,6 +9,12 @@ def capture(url, save_fn="capture.png"):
     browser.get(url) 
     browser.save_screenshot(save_fn)
     browser.close()
+    if not os.path.exists('webp_pic'):
+        os.mkdir('webp_pic')
+    im = Image.open(save_fn)
+    pic_path = 'webp_pic/' + save_fn + '.webp'
+    im.save(pic_path,'WEBP')
+    return pic_path
 class TrendingHtmlParser():
     html = ''
     rpo = []
