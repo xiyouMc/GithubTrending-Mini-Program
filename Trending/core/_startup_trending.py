@@ -15,7 +15,7 @@ class Capture:
             png_path = common.PIC + '/' + capture_png
             webp_path = common.WEBP +'/' + capture_png + '.webp'
             if not os.path.exists(png_path):
-                webp_path = trending_html_parse.capture(common.API.replace('trending',rep),capture_png)
+                webp_path = trending_html_parse.capture(common.API.replace('trending',rep),png_path)
             if not os.path.exists(webp_path):
                 webp_path = trending_html_parse.convert_webp(png_path)
             return webp_path
