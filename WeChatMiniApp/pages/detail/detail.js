@@ -17,7 +17,7 @@ Page({
          wx.request({
             url:api.server_api + 'capture' + link,
             success:function(res){
-                console.log('ressuess');
+                console.log('ressuess' + res);
                 // hide()
             // var list = that.data;
             // for(var i = 0; i < res.data.length; i++){
@@ -28,9 +28,9 @@ Page({
             // });
             // page ++;
             console.log("https://python.0x2048.com/" + 'capture' + link);
-            that.setData({
-                image_url:"https://python.0x2048.com/" + 'capture' + link,
-            })
+            // that.setData({
+            //     image_url:"https://python.0x2048.com/" + 'capture' + link,
+            // })
             that.setData({
                 hidden:true
             });
