@@ -3,8 +3,7 @@ from selenium import webdriver
 import threading,common,time,os
 def capture(url, save_fn="capture.png"):
     print url
-    # binary = FirefoxBinary(r'/root/dev/firefox/firefox')
-    browser = webdriver.Chrome(executable_path="/root/dev/chromedriver")
+    browser = webdriver.PhantomJS('PhantomJS/phantomjs')
     browser.set_window_size(1200, 900)
     browser.get(url) 
     browser.save_screenshot(save_fn)
