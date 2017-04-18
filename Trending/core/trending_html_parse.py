@@ -9,12 +9,14 @@ def capture(url, save_fn="capture.png"):
     browser.get(url) 
     browser.save_screenshot(save_fn)
     browser.close()
-    if not os.path.exists('webp_pic'):
-        os.mkdir('webp_pic')
-    im = Image.open(save_fn)
-    pic_path = 'webp_pic/' + save_fn + '.webp'
-    im.save(pic_path,'WEBP')
-    return pic_path
+    return capture(save_fn)
+def convert_webp(png_path):
+    if not os.path.exists(common.WEBP):
+        os.mkdir(common.WEBP)
+    im = Image.open(png_path)
+    webp_path = common.WEBP + '/' + png_path + '.webp'
+    im.save(webp_path,'WEBP')
+    return webp_path
 class TrendingHtmlParser():
     html = ''
     rpo = []
