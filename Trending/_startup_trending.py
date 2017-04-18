@@ -19,7 +19,7 @@ class Capture:
             f.close()
             # self.wfile.write(b)
             print 'Send Response!!!!'
-            web.header('Content-length:',str(len(b))
+            web.header('Content-length:',str(len(b)))
             return b
 class AllLang:
     def GET(self):
