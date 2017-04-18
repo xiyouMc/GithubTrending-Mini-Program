@@ -1,4 +1,4 @@
-<image src="{{ image_url }}" mode="widthFix"></image>
+<image src="{{ image_url }}" mode="widthFix" binderror="binderror"></image>
 
  <view class="body-view">
     <loading hidden="{{hidden}}" bindchange="loadingChange">

@@ -17,7 +17,7 @@ Page({
          wx.request({
             url:api.server_api + 'capture' + link,
             success:function(res){
-                console.log('ressuess' + res.data);
+                console.log('ressuess:' + res.data);
                 // hide()
             // var list = that.data;
             // for(var i = 0; i < res.data.length; i++){
@@ -28,9 +28,9 @@ Page({
             // });
             // page ++;
             console.log("https://python.0x2048.com/" + 'capture' + link);
-            // that.setData({
-            //     image_url:"https://python.0x2048.com/" + 'capture' + link,
-            // })
+            that.setData({
+                image_url:api.server_api + res.data,
+            })
             that.setData({
                 hidden:true
             });
@@ -38,6 +38,9 @@ Page({
             }
         });
     },
+    binderror:function(e){
+        console.log(e)
+    }
     // onShow:function(){
     //     //  在页面展示之后先获取一次数据
     //     var that = this;
