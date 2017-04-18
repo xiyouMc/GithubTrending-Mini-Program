@@ -1,4 +1,4 @@
-var url = "http://123.206.111.247/";
+var api = require('../../utils/request_api.js')
 var page =0;
 var page_size = 20;
 var sort = "last";
@@ -14,7 +14,7 @@ var GetList = function(that){
     hidden:false
   });
   wx.request({
-    url:url + 'all/',
+    url:api.server_api + 'all/',
     success:function(res){
       console.info(res.data);
       // var list = that.data;

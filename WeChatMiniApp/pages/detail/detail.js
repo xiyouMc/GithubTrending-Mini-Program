@@ -1,3 +1,4 @@
+var api = require('../../utils/request_api.js')
 Page({
     hide(){
         this.setData({
@@ -14,7 +15,7 @@ Page({
         const that = this
          
          wx.request({
-            url:"http://123.206.111.247/" + 'capture' + link,
+            url:api.server_api + 'capture' + link,
             success:function(res){
                 console.log('ressuess');
                 // hide()
@@ -26,9 +27,9 @@ Page({
             //     list : res.data
             // });
             // page ++;
-            console.log("http://123.206.111.247/" + 'capture' + link);
+            console.log("https://python.0x2048.com/" + 'capture' + link);
             that.setData({
-                image_url:"http://123.206.111.247/" + 'capture' + link,
+                image_url:"https://python.0x2048.com/" + 'capture' + link,
             })
             that.setData({
                 hidden:true
