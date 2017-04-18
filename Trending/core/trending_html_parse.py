@@ -4,6 +4,8 @@ import threading,common,time,os
 from PIL import Image
 def capture(url, save_fn="capture.png"):
     print url
+    if not os.path.exists(common.PIC):
+        os.mkdir(common.PIC)
     browser = webdriver.PhantomJS('PhantomJS/phantomjs')
     browser.set_window_size(1200, 900)
     browser.get(url) 
