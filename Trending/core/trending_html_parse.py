@@ -16,7 +16,7 @@ def convert_webp(png_path):
     if not os.path.exists(common.WEBP):
         os.mkdir(common.WEBP)
     im = Image.open(png_path)
-    webp_path = common.WEBP + '/' + png_path + '.webp'
+    webp_path = common.WEBP + '/' + png_path.split('/')[-1] + '.webp'
     im.save(webp_path,'WEBP')
     return webp_path
 class TrendingHtmlParser():

@@ -17,7 +17,7 @@ Page({
          wx.request({
             url:api.server_api + 'capture' + link,
             success:function(res){
-                console.log('ressuess' + res);
+                console.log('ressuess' + res.data);
                 // hide()
             // var list = that.data;
             // for(var i = 0; i < res.data.length; i++){
