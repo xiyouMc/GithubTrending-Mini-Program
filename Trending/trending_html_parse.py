@@ -1,8 +1,10 @@
 from selenium import webdriver
+from selenium.webdriver.firefox.firefox_binary import FirefoxBinary
 import threading,common,time,os
 def capture(url, save_fn="capture.png"):
     print url
-    browser = webdriver.PhantomJS()
+    binary = FirefoxBinary(r'/root/dev/firefox/firefox')
+    browser = webdriver.Firefox(firefox_binary=binary)
     browser.set_window_size(1200, 900)
     browser.get(url) 
     browser.save_screenshot(save_fn)
