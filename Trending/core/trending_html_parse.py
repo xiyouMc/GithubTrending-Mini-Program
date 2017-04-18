@@ -11,7 +11,7 @@ def capture(url, save_fn="capture.png"):
     browser.get(url) 
     browser.save_screenshot(save_fn)
     browser.close()
-    return capture(save_fn)
+    return convert_webp(save_fn)
 def convert_webp(png_path):
     if not os.path.exists(common.WEBP):
         os.mkdir(common.WEBP)
