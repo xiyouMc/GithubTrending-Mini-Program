@@ -1,4 +1,6 @@
-<image src="{{ image_url }}" mode="widthFix" binderror="binderror"></image>
+<image src="{{ image_url }}" mode="widthFix" binderror="binderror"
+style="width: 480px;  background-color: #eeeeee;"
+></image>
 
  <view class="body-view">
     <loading hidden="{{hidden}}" bindchange="loadingChange">

@@ -3,11 +3,45 @@ import json
 from time import time
 import requests
 import common,logging,datetime,os,trending_html_parse
+import util
+CODEHUB_API = 'http://trending.codehub-app.com/v2/trending?since=%s'
+CODEHUB_API_LAN = 'http://trending.codehub-app.com/v2/trending?since=%s&language=%s'
+CODEHUB_API_LANGUAGES = 'http://trending.codehub-app.com/v2/languages'
 urls = (
     '/all/','AllLang',
-    '/capture/(.*)','Capture'
+    '/capture/(.*)','Capture',
+    '/v1/trending','Trending',
+    '/v1/languages','Languages',
+    '/v1/repos','Repos'
 )
 app = web.application(urls,globals())
+
+class Trending:
+    def GET(self):
+        print web.input()
+        params = util.getInput(web.input())
+        print params
+        since = params['since']
+        language = params.get('language')
+        print language
+        if not language == None:
+            trending_api = CODEHUB_API_LAN % (since,language)
+        else:
+            trending_api = CODEHUB_API % since
+        _trending_json = requests.get(trending_api)
+        print _trending_json.text
+        return _trending_json.text
+class Languages:
+    def GET(self):
+        _lans_json = requests.get(CODEHUB_API_LANGUAGES)
+        return _lans_json.text
+class Repos:
+    def GET(self):
+        params = util.getInput(web.input())
+        github_url = params['github']
+        _json = requests.get(github_url,verify=False)
+        return _json.text
+
 class Capture:
     def GET(self,rep):
             capture_png = rep.split('/')[-1] + '.png'

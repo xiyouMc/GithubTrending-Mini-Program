@@ -1,31 +1,42 @@
 <view>
 <!--<button class="primary" size="{{primarySize}}" loading="{{loading}}" plain="{{plain}}"
         disabled="{{disabled}}" bindtap="select"> All></button>-->
-<view class="classname" bindtap="selectLanguage">
+<!--<view class="classname" bindtap="selectLanguage">
  <text class = 'select'>All</text>
 <image class = 'jiantou'src="../../assets/jiantou.png">All</image>
-</view>
+</view>-->
        
 <view class="devide"/>
   <scroll-view scroll-top="{{scrollTop}}" scroll-y="true" style="height:{{scrollHeight}}px;"
     class="list" bindscrolltolower="bindDownLoad" bindscroll="scroll"
     enable-back-to-top="true" >
     <view class="item" wx:for="{{list}}" data-link="{{ item.link }}" catchtap="cellTap" >
-      <view class="best">
-        <text class="title">{{item.link}}</text>  
+    
+    <view class="best">
+    
+    <view class="best">
+     <image class="user_pic" mode="{{item.mode}}" src="{{item.owner.avatar_url}}"></image>
+        <text class="title">{{item.name}}</text>  
       </view>
-     
+       
        <view class="desc">
-        <text class="description">{{item.desc}}</text> 
-        <view class="jian" >></view> 
+        <text class="description">{{item.description}}</text> 
+        
       </view>
-     
-      
+    
       <view class="star">
-        <text class="stars">{{item.stars}}</text>  
+      <image class = 'jiantou' src="../../assets/star.png"></image>
+        <text class="stars">{{item.stargazers_count}}</text>  
+         <image class = 'jiantou' src="../../assets/fork.png"></image>
+        <text class="stars">{{item.forks_count}}</text>  
+
+         <image class = 'jiantou' src="../../assets/admin.png"></image>
+        <text class="admin">{{item.owner.login}}</text>  
       </view>  
 
       <view class="devide"/>
+    </view>
+      
     </view>
   </scroll-view>
   <view class="body-view">

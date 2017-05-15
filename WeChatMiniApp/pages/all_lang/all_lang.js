@@ -14,13 +14,13 @@ var GetList = function(that){
     hidden:false
   });
   wx.request({
-    url:api.server_api + 'all/',
+    url: api.server_api + 'v1/trending?since=daily',
+    method:'GET',
+    header: {
+      'content-type': 'application/json'
+    },
     success:function(res){
       console.info(res.data);
-      // var list = that.data;
-      // for(var i = 0; i < res.data.length; i++){
-      //   list.push(res.data[i]);
-      // }
       that.setData({
         list : res.data
       });
@@ -98,18 +98,18 @@ wx.navigateTo({
   console.log('click')
   console.log(e.currentTarget.dataset.link)
   const link = e.currentTarget.dataset.link
-  wx.navigateTo({
-    url: '../detail/detail?link=' + link,
-    success: function(res){
-      // success
-    },
-    fail: function(res) {
-      // fail
-    },
-    complete: function(res) {
-      // complete
-    }
-  })
+  // wx.navigateTo({
+  //   url: '../detail/detail?link=' + link,
+  //   success: function(res){
+  //     // success
+  //   },
+  //   fail: function(res) {
+  //     // fail
+  //   },
+  //   complete: function(res) {
+  //     // complete
+  //   }
+  // })
  },
  refresh:function(event){
   //  该方法绑定了页面滑动到顶部的事件，然后做上拉刷新

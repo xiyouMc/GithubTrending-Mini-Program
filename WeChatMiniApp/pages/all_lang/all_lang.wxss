@@ -7,8 +7,8 @@
 }
 .jiantou{
     width: 10px;
-    height: 13px;
-    margin-left: 6px
+    height: 10px;
+    margin-left: 10px
 }
 .primary{
     background-color: black;
@@ -18,11 +18,9 @@
 }
 .description{
    margin-left:10px;
-   font-size: 15px;
+   font-size: 17px;
    overflow: hidden;
    float: left;
-   width: 300px;
-   height: 50px
 }
 .star{
     margin-top: 10px;
@@ -36,7 +34,13 @@
     float: right
 }
 .stars{
-    margin-left:10px;
+    margin-left:7px;
+    color:#C7C7C7;
+    font-size: 12px;
+    margin-right: 50px
+}
+.admin{
+    margin-left:7px;
     color:#C7C7C7;
     font-size: 14px;
     margin-right: 50px
@@ -45,7 +49,6 @@
   /* iOS video-cell margin bug*/
   padding-bottom: 10px;
   text-overflow: clip
-  
 }
 .devide{
  height:1px;
@@ -61,4 +64,9 @@
   border-radius: 2px;
   color: #ff591b;
   overflow: hidden;
+}
+.user_pic{
+  width:40px;
+  height:40px;
+  border-radius:100px
 }
