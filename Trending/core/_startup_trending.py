@@ -29,7 +29,6 @@ class Trending:
         else:
             trending_api = CODEHUB_API % since
         _trending_json = requests.get(trending_api)
-        print _trending_json.text
         return _trending_json.text
 class Languages:
     def GET(self):
