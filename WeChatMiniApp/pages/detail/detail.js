@@ -35,7 +35,8 @@ Page({
               private: res.data.private == false ? "Public" : "Private",
               lan: res.data.language,
               create_time: res.data.created_at.substring(0,10),
-              size: res.data.size
+              size: res.data.size + "KB",
+              owner_name: res.data.owner.login
             })
           }
         });

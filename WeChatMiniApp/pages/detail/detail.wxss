@@ -37,8 +37,7 @@
 }
 .btn_item{
   border-bottom: gray solid 0.1px;
-
-  height: 30px
+  height: 40px
 }
 .view-item{
   display: inline-block

@@ -26,7 +26,7 @@ Page({
         })
         const content = Base64.decode(res.data.content)
         wemark.parse(content, that, {
-          imageWidth: wx.getSystemInfoSync().windowWidth - 40,
+          imageWidth: wx.getSystemInfoSync().windowWidth - 50,
           name: 'wemark'
         })
       }

@@ -16,12 +16,12 @@ urls = (
     '/v1/repos','Repos'
 )
 app = web.application(urls,globals())
+dirs = 'CodeJsonData'
 header={
     'Authorization':' token '+github_token.token
 }
 class Trending:
     def GET(self):
-        dirs = 'CodeJsonData'
         if not os.path.exists(dirs):
             os.mkdir(dirs)
         
@@ -56,7 +56,14 @@ class Repos:
     def GET(self):
         params = util.getInput(web.input())
         github_url = params['github']
+        if os.path.exists(dirs + '/' + _get_time() + github_url.split('/')[-1]):
+            with open(dirs + '/' + _get_time() + github_url.split('/')[-1],'r') as f:
+                c = f.readline()
+            if not c == None:
+                return c
         _json = requests.get(github_url,verify=False,headers=header)
+        with open(dirs + '/' + _get_time() + github_url.split('/')[-1],'w') as f:
+            f.write(_json.text.encode('utf-8'))
         return _json.text
 
 class Capture:

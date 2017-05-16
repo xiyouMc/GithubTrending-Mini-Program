@@ -1,11 +1,4 @@
-<view>
-<!--<button class="primary" size="{{primarySize}}" loading="{{loading}}" plain="{{plain}}"
-        disabled="{{disabled}}" bindtap="select"> All></button>-->
-<!--<view class="classname" bindtap="selectLanguage">
- <text class = 'select'>All</text>
-<image class = 'jiantou'src="../../assets/jiantou.png">All</image>
-</view>-->
-       
+<view>       
   <scroll-view scroll-top="{{scrollTop}}" scroll-y="true" style="height:{{scrollHeight}}px;"
     class="list" bindscrolltolower="bindDownLoad" bindscroll="scroll"
     enable-back-to-top="true" >

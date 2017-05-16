@@ -1,5 +1,5 @@
 .title{
-    color: #4876FF;
+    color: #4F94CD;
     font-weight:bold;
     margin-left:10px;
     margin-bottom:10px;
@@ -21,10 +21,12 @@
 }
 .description{
    margin-top: 10px;
-   font-size: 15px;
+   font-size: 14px;
    overflow: hidden;
    float: left;
    margin-left:10px;
+   line-height:1.5;
+   color:#0D0D0D
 }
 .star{
     margin-top: 10px;
