@@ -16,7 +16,6 @@ urls = (
     '/v1/repos','Repos'
 )
 app = web.application(urls,globals())
-f = open('')
 header={
     'Authorization':' token '+github_token.token
 }
