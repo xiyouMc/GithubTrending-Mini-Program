@@ -17,9 +17,6 @@ Page({
          
         wx.request({
           url: api.server_api + 'v1/repos?github=' + link,
-          header:{
-            "Authorization":"token f14c00bb62916a08c61efbacc0a956f2c1bd0859"
-          },
           success:function(res){
             console.log(res.data)
             that.setData({
@@ -51,7 +48,7 @@ Page({
     },
     readme_click(e){
       console.log('click')
-      console.log(e.currentTarget.dataset.link)
+      console.log(e.currentTarget.dataset.link.replace('{+path}','README.md'))
     }
     // onShow:function(){
     //     //  在页面展示之后先获取一次数据
