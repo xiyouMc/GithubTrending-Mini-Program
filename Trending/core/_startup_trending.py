@@ -9,18 +9,29 @@ import hashlib
 CODEHUB_API = 'http://trending.codehub-app.com/v2/trending?since=%s'
 CODEHUB_API_LAN = 'http://trending.codehub-app.com/v2/trending?since=%s&language=%s'
 CODEHUB_API_LANGUAGES = 'http://trending.codehub-app.com/v2/languages'
+SEARCH_API = 'https://api.github.com/search/repositories?q=%s&sort=stars&order=desc'
 urls = (
     '/all/','AllLang',
     '/capture/(.*)','Capture',
     '/v1/trending','Trending',
     '/v1/languages','Languages',
-    '/v1/repos','Repos'
+    '/v1/repos','Repos',
+    '/v1/repos/search','ReposSearch'
 )
 app = web.application(urls,globals())
 dirs = 'CodeJsonData'
 header={
     'Authorization':' token '+github_token.token
 }
+class ReposSearch:
+    def GET(self):
+        print web.input()
+        params = util.getInput(web.input())
+        q = params['q']
+        api = SEARCH_API % q
+        print api,header
+        r = requests.get(api, verify=False,headers=header)
+        return r.text
 class Trending:
     def GET(self):
         if not os.path.exists(dirs):
