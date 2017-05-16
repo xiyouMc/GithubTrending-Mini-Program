@@ -16,7 +16,7 @@ urls = (
 )
 app = web.application(urls,globals())
 header={
-    'Authorization':' token f14c00bb62916a08c61efbacc0a956f2c1bd0859'
+    'Authorization':'f14c00bb62916a08c61efbacc0a956f2c1bd0859'
 }
 class Trending:
     def GET(self):
