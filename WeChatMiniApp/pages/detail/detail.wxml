@@ -37,7 +37,7 @@
 </view>
 </view>
 
-<view class="nav-li count_item" style="display:inline-block;" >
+<view class="nav-li count_item_right" style="display:inline-block;" >
 <view class="flex-wrp" style="flex-direction:column;">
       <view class="flex-item">
       <text class="num">{{forks}}</text>
@@ -50,24 +50,48 @@
 </view>
 <view style="height:20px;background: #E8E8E8;"></view>
 
+<view style="flex-direction:column;">
+ <view style="flex-direction:row;height: 30px;">
+    <view class="item_left" style="flex-direction:row;display:inline-block;">
+        <image class="jiantou"  src="../../assets/lock.png" style="vertical-align:middle"></image>
+        <text style="line-height:30px;font-size:14px">{{ private }}</text>
+    </view>
+    <view class="item_right" style="flex-direction:row;display:inline-block;">
 
-<view class="nav" style="flex-direction:row; ">
-    <view class="nav-li btn_item" >
-            <view class="nav" catchtap="readme_click" data-link="{{ readme_link}}" >
-            <image class="jiantou" src="../../assets/readme.png"></image>
-            <text style="display:inline-black;">Readme</text>
-            <image  class="jiantou" src="../../assets/jiantou_btn.png" style="margin-left:220px"></image>
+        <image class="jiantou"  src="../../assets/lan.png" style="vertical-align:middle"></image>
+        <text style="line-height:30px;font-size:14px">{{ lan }}</text>
+    </view>
+ </view>
+
+ <view style="flex-direction:row;height: 30px;">
+    <view class="item_left" style="flex-direction:row;display:inline-block;">
+        <image class="jiantou"  src="../../assets/rili.png" style="vertical-align:middle"></image>
+        <text style="line-height:30px;font-size:14px">{{ create_time }}</text>
+    </view>
+    <view class="item_right" style="flex-direction:row;display:inline-block;">
+
+        <image class="jiantou"  src="../../assets/size.png" style="vertical-align:middle"></image>
+        <text style="line-height:30px;font-size:14px">{{ size }}</text>
+    </view>
+ </view>
+</view>
+
+<view  style="flex-direction:row; ">
+    <view class="btn_item" >
+            <view  catchtap="readme_click" data-link="{{ readme_link}}" >
+            <image class="jiantou" src="../../assets/readme.png"  style="vertical-align:middle" ></image>
+            <text style="display:inline-block; line-height:30px;font-size:14px">ReadMe</text>
+            <image  class="jiantou" src="../../assets/jiantou_btn.png" style="margin-left:250px;vertical-align:middle"></image>
             </view>
     </view>
-
       <!--<view class="nav-li count_item" style="display:inline-black;">
             <view class="nav" style="display:inline-black;flex-direction:row;">
             <text style="display:inline-black;">Public</text>
             </view>
       </view>-->
 </view>
- <!--<view class="body-view">
+ <view class="body-view">
     <loading hidden="{{hidden}}" bindchange="loadingChange">
       拼命加载中...
     </loading>
-  </view>-->
+  </view>

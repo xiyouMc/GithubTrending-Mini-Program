@@ -6,7 +6,6 @@ var is_easy = 0;
 var lange_id = 0;
 var pos_id = 0;
 var unlearn = 0;
- 
   
 // 获取数据的方法，具体怎么获取列表数据大家自行发挥
 var GetList = function(that){
@@ -45,6 +44,7 @@ Page({
  onLoad:function(){
   //  这里要非常注意，微信的scroll-view必须要设置高度才能监听滚动事件，所以，需要在页面的onLoad事件中给scroll-view的高度赋值
    var that = this;
+   GetList(that);
    wx.getSystemInfo({
      success:function(res){
        console.info(res.windowHeight);
@@ -56,8 +56,6 @@ Page({
  },
  onShow:function(){
   //  在页面展示之后先获取一次数据
-  var that = this;
-  GetList(that);
  },
  bindDownLoad:function(){
   //  该方法绑定了页面滑动到底部的事件
@@ -71,16 +69,6 @@ Page({
    });
  },
  selectLanguage(e){
-//   console.log('click eee')
-//   wx.showActionSheet({
-//   itemList: ['A', 'B', 'C'],
-//   success: function(res) {
-//     console.log(res.tapIndex)
-//   },
-//   fail: function(res) {
-//     console.log(res.errMsg)
-//   }
-// })
 wx.navigateTo({
   url: '../lan_list/lan_list',
   success: function(res){
@@ -113,6 +101,10 @@ wx.navigateTo({
       console.log(res.data)
     }
   })
+ }
+  ,
+ onPullDownRefresh: function () {
+   console.log("下拉")
  }
 //  ,
 //  refresh:function(event){

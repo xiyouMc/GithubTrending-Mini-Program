@@ -1,4 +1,5 @@
 var api = require('../../utils/request_api.js')
+var Base64 = require('../../libs/js-base64/base64.modified.js'); 
 Page({
     hide(){
         this.setData({
@@ -18,27 +19,23 @@ Page({
         wx.request({
           url: api.server_api + 'v1/repos?github=' + link,
           success:function(res){
+            that.setData({
+             
+            }); 
             console.log(res.data)
             that.setData({
-              image_url: res.data.owner.avatar_url
-            })
-            that.setData({
-              repo_name: res.data.name
-            })
-            that.setData({
-              repo_msg: res.data.description
-            })
-            that.setData({
-              stars: res.data.stargazers_count
-            })
-            that.setData({
-              watchers: res.data.watchers_count
-            })
-            that.setData({
-              forks: res.data.forks
-            })
-            that.setData({
-              readme_link: res.data.contents_url
+              hidden: true,
+              image_url: res.data.owner.avatar_url,
+              repo_name: res.data.name,
+              repo_msg: res.data.description,
+              stars: res.data.stargazers_count,
+              watchers: res.data.subscribers_count,
+              forks: res.data.forks,
+              readme_link: res.data.contents_url,
+              private: res.data.private == false ? "Public" : "Private",
+              lan: res.data.language,
+              create_time: res.data.created_at.substring(0,10),
+              size: res.data.size
             })
           }
         });
@@ -48,7 +45,23 @@ Page({
     },
     readme_click(e){
       console.log('click')
-      console.log(e.currentTarget.dataset.link.replace('{+path}','README.md'))
+      const readme_link = e.currentTarget.dataset.link.replace('{+path}', 'README.md')
+      console.log(readme_link)
+      wx.navigateTo({
+        url: '../code/code?readme_link=' + readme_link,
+        success: function (res) {
+          // success
+          console.log(res.data)
+        },
+        fail: function (res) {
+          // fail
+          console.log(res.data)
+        },
+        complete: function (res) {
+          // complete
+          console.log(res.data)
+        }
+      })
     }
     // onShow:function(){
     //     //  在页面展示之后先获取一次数据

@@ -21,6 +21,10 @@ header={
 }
 class Trending:
     def GET(self):
+        dirs = 'CodeJsonData'
+        if not os.path.exists(dirs):
+            os.mkdir(dirs)
+        
         print web.input()
         params = util.getInput(web.input())
         print params
@@ -28,10 +32,21 @@ class Trending:
         language = params.get('language')
         print language
         if not language == None:
-            trending_api = CODEHUB_API_LAN % (since,language)
+            filename = _get_time() + since + language + '.json'
         else:
-            trending_api = CODEHUB_API % since
+            filename = _get_time() + since + '.json'
+        if os.path.exists(dirs + '/' + filename):
+            with open(dirs + '/' + filename,'r') as f:
+                content = f.readline()
+            if not content == '':
+                return content
+        if not language == None:
+            trending_api = CODEHUB_API_LAN % (since,language)           
+        else:
+            trending_api = CODEHUB_API % since           
         _trending_json = requests.get(trending_api)
+        with open('CodeJsonData/' + filename,'w') as f:
+            f.write(_trending_json.text.encode('utf-8'))
         return _trending_json.text
 class Languages:
     def GET(self):

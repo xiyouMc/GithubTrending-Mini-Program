@@ -25,13 +25,20 @@
   margin-top: 18px
 }
 .count_item{
-  border: gray solid 0.1px;
+  border-right: gray solid 0.1px;
+  border-bottom: gray solid 0.1px;
+  padding-left: 10px;
+  width: 30.1%;
+}
+.count_item_right{
+  border-bottom: gray solid 0.1px;
   padding-left: 10px;
   width: 30.1%;
 }
 .btn_item{
-  border: gray solid 0.1px;
-  padding-left: 10px
+  border-bottom: gray solid 0.1px;
+
+  height: 30px
 }
 .view-item{
   display: inline-block
@@ -49,4 +56,13 @@
     height: 20px;
     margin-left: 10px;
     margin-right: 5px
+}
+.item_right{
+  width: 49%;
+  border-bottom: gray solid 0.1px;
+}
+.item_left{
+  width: 50%;
+  border-right: gray solid 0.1px;
+border-bottom: gray solid 0.1px;
 }

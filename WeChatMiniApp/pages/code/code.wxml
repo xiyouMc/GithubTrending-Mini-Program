@@ -1,0 +1,8 @@
+<import src="../wemark/wemark.wxml"/>
+<template is="wemark" data="{{...wemark}}"></template>
+
+ <view class="body-view">
+    <loading hidden="{{hidden}}" bindchange="loadingChange">
+      拼命加载中...
+    </loading>
+  </view>

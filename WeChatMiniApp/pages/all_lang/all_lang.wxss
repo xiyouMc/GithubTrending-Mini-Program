@@ -2,7 +2,7 @@
     color: #4876FF;
     font-weight:bold;
     margin-left:10px;
-    margin-bottom:15px;
+    margin-bottom:10px;
     padding-bottom: 25px;
     font-size: 20px;
     margin-top: -10px;
@@ -21,15 +21,15 @@
 }
 .description{
    margin-top: 10px;
-   margin-left:50px;
    font-size: 15px;
    overflow: hidden;
    float: left;
+   margin-left:10px;
 }
 .star{
     margin-top: 10px;
     float: left;
-    margin-left:50px;
+    margin-left:10px;
 }
 .desc{
     clear: both;
@@ -45,9 +45,9 @@
     margin-right: 10px
 }
 .admin{
-    margin-left:7px;
+    margin-left:4px;
     color:#4D4D4D;
-    font-size: 16px;
+    font-size: 14px;
     margin-right: 20px
 }
 .best {
