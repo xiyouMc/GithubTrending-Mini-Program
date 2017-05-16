@@ -4,6 +4,7 @@ from time import time
 import requests
 import common,logging,datetime,os,trending_html_parse
 import util
+import github_token
 CODEHUB_API = 'http://trending.codehub-app.com/v2/trending?since=%s'
 CODEHUB_API_LAN = 'http://trending.codehub-app.com/v2/trending?since=%s&language=%s'
 CODEHUB_API_LANGUAGES = 'http://trending.codehub-app.com/v2/languages'
@@ -15,8 +16,9 @@ urls = (
     '/v1/repos','Repos'
 )
 app = web.application(urls,globals())
+f = open('')
 header={
-    'Authorization':' token 6559da1e1a9c443d96019a8353d9b64ce5edcdd1'
+    'Authorization':' token '+github_token.token
 }
 class Trending:
     def GET(self):

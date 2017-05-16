@@ -4,3 +4,4 @@
 *.html
 .DS_Store
 *.log
+Trending/core/github_token.py
