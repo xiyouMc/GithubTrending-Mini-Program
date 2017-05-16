@@ -56,13 +56,13 @@ class Repos:
     def GET(self):
         params = util.getInput(web.input())
         github_url = params['github']
-        if os.path.exists(dirs + '/' + _get_time() + github_url.split('/')[-1]):
-            with open(dirs + '/' + _get_time() + github_url.split('/')[-1],'r') as f:
+        if os.path.exists(dirs + '/' + _get_time() + github_url):
+            with open(dirs + '/' + _get_time() + github_url,'r') as f:
                 c = f.readline()
             if not c == None:
                 return c
         _json = requests.get(github_url,verify=False,headers=header)
-        with open(dirs + '/' + _get_time() + github_url.split('/')[-1],'w') as f:
+        with open(dirs + '/' + _get_time() + github_url,'w') as f:
             f.write(_json.text.encode('utf-8'))
         return _json.text
 
