@@ -5,6 +5,7 @@ import requests
 import common,logging,datetime,os,trending_html_parse
 import util
 import github_token
+import hashlib
 CODEHUB_API = 'http://trending.codehub-app.com/v2/trending?since=%s'
 CODEHUB_API_LAN = 'http://trending.codehub-app.com/v2/trending?since=%s&language=%s'
 CODEHUB_API_LANGUAGES = 'http://trending.codehub-app.com/v2/languages'
@@ -56,13 +57,16 @@ class Repos:
     def GET(self):
         params = util.getInput(web.input())
         github_url = params['github']
-        if os.path.exists(dirs + '/' + _get_time() + github_url):
-            with open(dirs + '/' + _get_time() + github_url,'r') as f:
+        m2 = hashlib.md5()   
+        m2.update(github_url)   
+        url_md5 =  m2.hexdigest()   
+        if os.path.exists(dirs + '/' + _get_time() + url_md5):
+            with open(dirs + '/' + _get_time() + url_md5,'r') as f:
                 c = f.readline()
             if not c == None:
                 return c
         _json = requests.get(github_url,verify=False,headers=header)
-        with open(dirs + '/' + _get_time() + github_url,'w') as f:
+        with open(dirs + '/' + _get_time() + url_md5,'w') as f:
             f.write(_json.text.encode('utf-8'))
         return _json.text
 
