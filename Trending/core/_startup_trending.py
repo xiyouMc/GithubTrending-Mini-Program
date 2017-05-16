@@ -15,7 +15,9 @@ urls = (
     '/v1/repos','Repos'
 )
 app = web.application(urls,globals())
-
+header={
+    'Authorization':'token f14c00bb62916a08c61efbacc0a956f2c1bd0859'
+}
 class Trending:
     def GET(self):
         print web.input()
@@ -32,13 +34,13 @@ class Trending:
         return _trending_json.text
 class Languages:
     def GET(self):
-        _lans_json = requests.get(CODEHUB_API_LANGUAGES)
+        _lans_json = requests.get(CODEHUB_API_LANGUAGES,headers=header)
         return _lans_json.text
 class Repos:
     def GET(self):
         params = util.getInput(web.input())
         github_url = params['github']
-        _json = requests.get(github_url,verify=False)
+        _json = requests.get(github_url,verify=False,headers=header)
         return _json.text
 
 class Capture:

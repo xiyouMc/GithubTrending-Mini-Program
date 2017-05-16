@@ -38,10 +38,10 @@ Page({
   scrollTop : 0,
   scrollHeight:0
  },
- onPullDownRefresh: function(){
-    wx.stopPullDownRefresh();
-    GetList(this);
-  },
+//  onPullDownRefresh: function(){
+//     wx.stopPullDownRefresh();
+//     GetList(this);
+//   },
  onLoad:function(){
   //  这里要非常注意，微信的scroll-view必须要设置高度才能监听滚动事件，所以，需要在页面的onLoad事件中给scroll-view的高度赋值
    var that = this;
@@ -98,26 +98,30 @@ wx.navigateTo({
   console.log('click')
   console.log(e.currentTarget.dataset.link)
   const link = e.currentTarget.dataset.link
-  // wx.navigateTo({
-  //   url: '../detail/detail?link=' + link,
-  //   success: function(res){
-  //     // success
-  //   },
-  //   fail: function(res) {
-  //     // fail
-  //   },
-  //   complete: function(res) {
-  //     // complete
-  //   }
-  // })
- },
- refresh:function(event){
-  //  该方法绑定了页面滑动到顶部的事件，然后做上拉刷新
-   page = 0;
-   this.setData({
-     list : [],
-     scrollTop : 0
-   });
-   GetList(this)
+  wx.navigateTo({
+    url: '../detail/detail?url=' + link,
+    success: function(res){
+      // success
+      console.log(res.data)
+    },
+    fail: function(res) {
+      // fail
+      console.log(res.data)
+    },
+    complete: function(res) {
+      // complete
+      console.log(res.data)
+    }
+  })
  }
+//  ,
+//  refresh:function(event){
+//   //  该方法绑定了页面滑动到顶部的事件，然后做上拉刷新
+//    page = 0;
+//    this.setData({
+//      list : [],
+//      scrollTop : 0
+//    });
+//    GetList(this)
+//  }
 })
