@@ -31,9 +31,10 @@ class ReposSearch:
         print web.input()
         params = util.getInput(web.input())
         q = params['q']
+        q = urllib.quote(q)
+        print q
         api = SEARCH_API % q
         print api,header
-        api = urllib.quote(api)
         r = requests.get(api, verify=False,headers=header)
         return r.text
 class Trending:
