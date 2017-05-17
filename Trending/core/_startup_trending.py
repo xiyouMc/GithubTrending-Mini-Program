@@ -1,3 +1,6 @@
+import sys
+reload(sys)
+sys.setdefaultencoding( "utf-8" )
 import web
 import json
 from time import time
