@@ -31,7 +31,7 @@ class ReposSearch:
         print web.input()
         params = util.getInput(web.input())
         q = params['q']
-        q = urllib.quote(q)
+        q = urllib.quote(str(q))
         print q
         api = SEARCH_API % q
         print api,header
