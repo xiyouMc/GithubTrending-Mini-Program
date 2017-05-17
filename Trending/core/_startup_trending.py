@@ -5,7 +5,7 @@ import requests
 import common,logging,datetime,os,trending_html_parse
 import util
 import github_token
-import hashlib
+import hashlib,urllib
 CODEHUB_API = 'http://trending.codehub-app.com/v2/trending?since=%s'
 CODEHUB_API_LAN = 'http://trending.codehub-app.com/v2/trending?since=%s&language=%s'
 CODEHUB_API_LANGUAGES = 'http://trending.codehub-app.com/v2/languages'
@@ -30,6 +30,7 @@ class ReposSearch:
         q = params['q']
         api = SEARCH_API % q
         print api,header
+        api = urllib.quote(api)
         r = requests.get(api, verify=False,headers=header)
         return r.text
 class Trending:

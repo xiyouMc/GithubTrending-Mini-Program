@@ -1,4 +1,5 @@
 var api = require('../../utils/request_api.js')
+var WxSearch = require('../wxSearch/wxSearch.js')
 var page =0;
 var page_size = 20;
 var sort = "last";
@@ -6,6 +7,7 @@ var is_easy = 0;
 var lange_id = 0;
 var pos_id = 0;
 var unlearn = 0;
+var search_q = "";
   
 // 获取数据的方法，具体怎么获取列表数据大家自行发挥
 var GetList = function(that){
@@ -53,6 +55,9 @@ Page({
        });
      }
    });
+   //初始化的时候渲染wxSearchdata
+   WxSearch.init(that, 43, ['weappdev', '小程序', 'wxParse', 'wxSearch', 'wxNotification']);
+   WxSearch.initMindKeys(['weappdev.com', '微信小程序开发', '微信开发', '微信小程序']);
  },
  onShow:function(){
   //  在页面展示之后先获取一次数据
@@ -101,10 +106,58 @@ wx.navigateTo({
       console.log(res.data)
     }
   })
- }
-  ,
+ },
  onPullDownRefresh: function () {
    console.log("下拉")
+ },
+ wxSearchFn: function (e) {
+   var that = this
+   WxSearch.wxSearchAddHisKey(that);
+   that.setData({
+     hidden: false
+   });
+   console.log(e.data + "Requests!!!!!!!!!!!!")
+   wx.request({
+     url: api.server_api + "v1/repos/search?q=" + search_q,
+     success: function (res) {
+       that.setData({
+         hidden: true
+       });
+       console.info(res.data);
+       that.setData({
+         list: res.data.items
+       });
+     }
+   })
+ },
+ wxSearchInput: function (e) {
+   var that = this
+   WxSearch.wxSearchInput(e, that);
+   search_q = e.detail.value;
+ },
+ wxSerchFocus: function (e) {
+   var that = this
+   WxSearch.wxSearchFocus(e, that);
+ },
+ wxSearchBlur: function (e) {
+   var that = this
+   WxSearch.wxSearchBlur(e, that);
+ },
+ wxSearchKeyTap: function (e) {
+   var that = this
+   WxSearch.wxSearchKeyTap(e, that);
+ },
+ wxSearchDeleteKey: function (e) {
+   var that = this
+   WxSearch.wxSearchDeleteKey(e, that);
+ },
+ wxSearchDeleteAll: function (e) {
+   var that = this;
+   WxSearch.wxSearchDeleteAll(that);
+ },
+ wxSearchTap: function (e) {
+   var that = this
+   WxSearch.wxSearchHiddenPancel(that);
  }
 //  ,
 //  refresh:function(event){
