@@ -29,15 +29,18 @@
   border-bottom: gray solid 0.1px;
   padding-left: 10px;
   width: 30.1%;
+  background-color: #FFFFFF;
 }
 .count_item_right{
   border-bottom: gray solid 0.1px;
   padding-left: 10px;
   width: 30.1%;
+  background-color: #FFFFFF;
 }
 .btn_item{
   border-bottom: gray solid 0.1px;
-  height: 40px
+  height: 40px;
+  background-color: #FFFFFF;
 }
 .view-item{
   display: inline-block
@@ -58,10 +61,25 @@
 }
 .item_right{
   width: 49%;
+  background-color: #FFFFFF;
   border-bottom: gray solid 0.1px;
 }
 .item_left{
   width: 50%;
   border-right: gray solid 0.1px;
+background-color: #FFFFFF;
+}
+
+.item2_right{
+  width: 49%;
+  background-color: #FFFFFF;
+  border-bottom: gray solid 0.1px;
+  border-top: gray solid 0.1px;
+}
+.item2_left{
+  width: 50%;
+  border-right: gray solid 0.1px;
 border-bottom: gray solid 0.1px;
+border-top: gray solid 0.1px;
+background-color: #FFFFFF;
 }

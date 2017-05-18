@@ -1,5 +1,8 @@
-<import src="../wemark/wemark.wxml"/>
-<template is="wemark" data="{{...wemark}}"></template>
+<!--<import src="../wemark/wemark.wxml"/>-->
+<import src="../../wxParse/wxParse.wxml"/> 
+<view class="wxParse">
+    <template is="wxParse" data="{{wxParseData:article.nodes}}"/>
+</view>
 
  <view class="body-view">
     <loading hidden="{{hidden}}" bindchange="loadingChange">

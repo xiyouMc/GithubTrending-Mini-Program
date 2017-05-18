@@ -8,7 +8,7 @@ import requests
 import common,logging,datetime,os,trending_html_parse
 import util
 import github_token
-import hashlib,urllib
+import hashlib,urllib,Image
 CODEHUB_API = 'http://trending.codehub-app.com/v2/trending?since=%s'
 CODEHUB_API_LAN = 'http://trending.codehub-app.com/v2/trending?since=%s&language=%s'
 CODEHUB_API_LANGUAGES = 'http://trending.codehub-app.com/v2/languages'
@@ -19,13 +19,19 @@ urls = (
     '/v1/trending','Trending',
     '/v1/languages','Languages',
     '/v1/repos','Repos',
-    '/v1/repos/search','ReposSearch'
+    '/v1/repos/search','ReposSearch',
+    '/v1/image/(.*)','Image'
 )
 app = web.application(urls,globals())
 dirs = 'CodeJsonData'
 header={
     'Authorization':' token '+github_token.token
 }
+class Image:
+    def GET(self,rep):
+        png = rep.split('/')[-1]
+        c = Image.open('Image/' + png)
+        return c
 class ReposSearch:
     def GET(self):
         print web.input()

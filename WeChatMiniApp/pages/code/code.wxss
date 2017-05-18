@@ -1,1 +1,1 @@
-@import '../wemark/wemark.wxss'
+@import "../../wxParse/wxParse.wxss";

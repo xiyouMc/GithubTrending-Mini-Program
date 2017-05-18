@@ -1,8 +1,14 @@
-<view>       
-  <scroll-view scroll-top="{{scrollTop}}" scroll-y="true" style="height:{{scrollHeight}}px;margin-top:12px;"
+  <import src="../../wxSearch/wxSearch.wxml"/>
+<import src="../template/template.wxml" />
+
+<!--<template is="wxSearch" data="{{wxSearchData}}"/>-->
+
+
+<view style="margin-top:120px">       
+  <scroll-view scroll-top="{{scrollTop}}" scroll-y="true" style="height:{{scrollHeight}}px;"
     class="list" bindscrolltolower="bindDownLoad" bindscroll="scroll"
     enable-back-to-top="true" >
-    <view  wx:key="item" wx:for="{{list}}" data-link="{{ item.url }}" catchtap="cellTap" >
+    <view class="item" wx:key="item" wx:for="{{list}}" data-link="{{ item.url }}" catchtap="cellTap" >
     <view style="float:left;">
           <image class="user_pic"  src="{{item.owner.avatar_url}}" ></image>
     </view>
@@ -34,10 +40,16 @@
 
   </scroll-view>
   </view>
+
+  <view class="wxSearch-section" style="position:fixed; top:0;width:95%;height:100px;">
+  <view class="wxSearch-pancel" >
+    <input bindinput="wxSearchInput" bindfocus="wxSerchFocus" value="{{wxSearchData.value}}" bindblur="wxSearchBlur" class="wxSearch-input" placeholder="搜一搜" />
+  </view>
+  <template is="button" data="{{bindtapaction:'searchGithub', bcolor:'#04BE02', loading: loading, context:'搜索'}}" />
+</view>
+
   <view class="body-view">
     <loading hidden="{{hidden}}" bindchange="loadingChange">
       拼命加载中...
     </loading>
   </view>
- 
-

@@ -1,0 +1,40 @@
+<view class="item1" style="margin-top:10px">
+<text>Github开源社区</text>
+</view>
+<view class="about_container">
+<view  style="margin-top:10px;line-height:24px">
+<text class="item2">这应该是国内访问速度最快的Github平台了，在这里你可以查看当天最热的开源代码、查询代码、项目文档，更多牛逼的功能等着你!!!</text>
+</view>
+</view>
+
+<view class="item1">
+<text>作者</text>
+</view>
+<view class="about_container">
+<text class="item2">xiyouMc</text>
+</view>
+
+<view class="item1">
+<text>Github</text>
+</view>
+<view class="about_container">
+<text class="item2">https://github.com/xiyouMc</text>
+</view>
+
+<view class="item1">
+<text>个人主页</text>
+</view>
+<view class="about_container">
+<text class="item2">http://xiyouMc.0x2048.com</text>
+</view>
+
+<view class="item1">
+<text>公众号</text>
+</view>
+<view class="about_container">
+<text class="item2">DeveloperPython</text>
+</view>
+
+<view style="vertical-align: middle;text-align:center">
+<image src="../../assets/python_qcode.jpg" style="width:200px;height:200px;" bindtap="ImgTap"></image>
+</view>

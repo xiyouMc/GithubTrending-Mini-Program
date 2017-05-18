@@ -1,5 +1,5 @@
 var api = require('../../utils/request_api.js')
-var wemark = require('../wemark/wemark.js')
+var WxParse = require('../../wxParse/wxParse.js');
 // 需要渲染的Markdown文本
 var md = '# hello, world\n\nI love you, wemark!';
 var Base64 = require('../../libs/js-base64/base64.modified.js'); 
@@ -25,10 +25,12 @@ Page({
           hidden:true
         })
         const content = Base64.decode(res.data.content)
-        wemark.parse(content, that, {
-          imageWidth: wx.getSystemInfoSync().windowWidth - 50,
-          name: 'wemark'
-        })
+        // wemark.parse(content, that, {
+        //   imageWidth: wx.getSystemInfoSync().windowWidth - 50,
+        //   name: 'wemark'
+        // })
+        console.log(content)
+        WxParse.wxParse('article', 'md', content, that, 5);
       }
     })
    

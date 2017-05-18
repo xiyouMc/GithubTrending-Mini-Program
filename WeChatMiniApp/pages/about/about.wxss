@@ -1,0 +1,16 @@
+.about_container{
+  flex-direction: column; 
+  margin-left:30px;
+  margin-bottom:30px;
+  margin-top: 10px;
+  border-bottom: gray solid 0.1px;
+  font-size: 14px
+}
+.item1{
+  font-size: 18px;
+  margin-left: 10px
+}
+.item2{
+  font-size:15px;
+  color: #969696
+}

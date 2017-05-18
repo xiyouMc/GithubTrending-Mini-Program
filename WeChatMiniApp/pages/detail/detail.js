@@ -1,5 +1,6 @@
 var api = require('../../utils/request_api.js')
 var Base64 = require('../../libs/js-base64/base64.modified.js'); 
+var link;
 Page({
     hide(){
         this.setData({
@@ -9,7 +10,7 @@ Page({
     onLoad(query){
         console.log('show detail')
         console.log(query)
-        const link = query.url
+        link = query.url
         console.log(api.server_api + 'v1/repos?github=' + link)
         this.setData({
             hidden:false
@@ -63,6 +64,24 @@ Page({
           console.log(res.data)
         }
       })
+    },
+    code(e){
+      wx.showToast({
+        title: '敬请期待',
+        duration: 2000
+      })
+    },
+    onShareAppMessage: function () {
+      return {
+        title: '这个代码很牛逼!!!',
+        path: '/pages/detail/detail?url=' + link,
+        success: function (res) {
+          // 转发成功
+        },
+        fail: function (res) {
+          // 转发失败
+        }
+      }
     }
     // onShow:function(){
     //     //  在页面展示之后先获取一次数据

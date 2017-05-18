@@ -14,35 +14,35 @@
   </view>
 </view>
 
-<view class="nav" style="flex-direction:row; width:screen.width">
-  <view class="nav-li count_item" style="display:inline-block;">
-  <view class="flex-wrp"style="flex-direction:column;">
-        <view class="flex-item">
+<view  style="flex-direction:row; width:screen.width;">
+  <view class="count_item" style="display:inline-block;">
+  <view style="flex-direction:column;text-align:center;">
+        <view >
         <text class="num">{{stars}}</text>
         </view>
-        <view class="flex-item">
+        <view >
         <text class="num_msg">Stargazers</text>
         </view>
   </view>
   </view>
 
-<view class="nav-li count_item" style="display:inline-block;" >
-<view class="flex-wrp" style="flex-direction:column;">
-      <view class="flex-item">
+<view class="count_item" style="display:inline-block;" >
+<view style="flex-direction:column;text-align:center;">
+      <view >
       <text class="num">{{watchers}}</text>
       </view>
-      <view class="flex-item">
+      <view >
       <text class="num_msg">Watchers</text>
       </view>
 </view>
 </view>
 
-<view class="nav-li count_item_right" style="display:inline-block;" >
-<view class="flex-wrp" style="flex-direction:column;">
-      <view class="flex-item">
+<view class="count_item_right" style="display:inline-block;" >
+<view style="flex-direction:column;text-align:center;">
+      <view >
       <text class="num">{{forks}}</text>
       </view>
-      <view class="flex-item">
+      <view>
       <text class="num_msg">Forks</text>
       </view>
 </view>
@@ -51,27 +51,27 @@
 <view style="height:20px;background: #E8E8E8;"></view>
 
 <view style="flex-direction:column;">
- <view style="flex-direction:row;height: 30px;">
+ <view style="flex-direction:row;height: 50px;">
     <view class="item_left" style="flex-direction:row;display:inline-block;">
         <image class="jiantou"  src="../../assets/lock.png" style="vertical-align:middle"></image>
-        <text style="line-height:30px;font-size:14px">{{ private }}</text>
+        <text style="line-height:49px;font-size:16px">{{ private }}</text>
     </view>
     <view class="item_right" style="flex-direction:row;display:inline-block;">
 
         <image class="jiantou"  src="../../assets/lan.png" style="vertical-align:middle"></image>
-        <text style="line-height:30px;font-size:14px">{{ lan }}</text>
+        <text style="line-height:50px;font-size:16px">{{ lan }}</text>
     </view>
  </view>
 
- <view style="flex-direction:row;height: 30px;">
-    <view class="item_left" style="flex-direction:row;display:inline-block;">
+ <view style="flex-direction:row;height: 50px;">
+    <view class="item2_left" style="flex-direction:row;display:inline-block;">
         <image class="jiantou"  src="../../assets/rili.png" style="vertical-align:middle"></image>
-        <text style="line-height:30px;font-size:14px">{{ create_time }}</text>
+        <text style="line-height:50px;font-size:16px">{{ create_time }}</text>
     </view>
-    <view class="item_right" style="flex-direction:row;display:inline-block;">
+    <view class="item2_right" style="flex-direction:row;display:inline-block;">
 
         <image class="jiantou"  src="../../assets/size.png" style="vertical-align:middle"></image>
-        <text style="line-height:30px;font-size:14px">{{ size }}</text>
+        <text style="line-height:50px;font-size:16px">{{ size }}</text>
     </view>
  </view>
 </view>
@@ -89,25 +89,44 @@
     </view>
 </view>
 
-<view  style="flex-direction:row;">
-    <view class="btn_item" >
-            <view  catchtap="readme_click" data-link="{{ readme_link}}" >
-            <image class="jiantou" src="../../assets/readme.png"  style="vertical-align:middle;line-height:40px;" ></image>
-            <text style="display:inline-block; line-height:30px;font-size:16px;width:30px;line-height:40px;">Readme</text>
-            <image  class="jiantou" src="../../assets/jiantou_btn.png" style="margin-left:260px;vertical-align:middle;line-height:40px;"></image>
-            </view>
-    </view>
-</view>
 
-<view  style="flex-direction:row;">
-    <view class="btn_item" >
-            <view  catchtap="code" data-link="{{ code_link}}" >
+
+    <view catchtap="code" data-link="{{ code_link}}" class="btn_item" style="flex-direction:row;" >
+            <view style="display:inline-block;">
             <image class="jiantou" src="../../assets/code.png"  style="vertical-align:middle;line-height:40px;" ></image>
-            <text style="display:inline-block; line-height:40px;font-size:16px;width:30px">Source</text>
-            <image  class="jiantou" src="../../assets/jiantou_btn.png" style="margin-left:260px;vertical-align:middle;line-height:40px;"></image>
+            </view>
+            <view style="display:inline-block;width:30px">
+            <text style="line-height:40px;font-size:16px;width:30px">Source</text>
+            </view>
+            <view style="display:inline-block;">
+            <image  class="jiantou" src="../../assets/jiantou_btn.png" style="margin-left:240px;vertical-align:middle;line-height:40px;"></image>
             </view>
     </view>
-</view>
+
+        <view catchtap="readme_click" data-link="{{ readme_link}}" class="btn_item" style="flex-direction:row;" >
+            <view style="display:inline-block;">
+            <image class="jiantou" src="../../assets/readme.png"  style="vertical-align:middle;line-height:40px;" ></image>
+            </view>
+            <view style="display:inline-block;width:30px">
+            <text style="line-height:40px;font-size:16px;">Readme</text>
+            </view>
+            <view style="display:inline-block;">
+            <image  class="jiantou" src="../../assets/jiantou_btn.png" style="margin-left:240px;vertical-align:middle;line-height:40px;"></image>
+            </view>
+    </view>
+
+<!--<view class="btn_item" style="flex-direction:row;" catchtap="readme_click" data-link="{{ readme_link}}">
+            <view style="display:inline-block;">
+                    <image class="jiantou" src="../../assets/readme.png"  style="vertical-align:middle;line-height:40px;" ></image>
+            </view>
+            <view style="display:inline-block;">
+                  <text style="display:inline-block; line-height:30px;font-size:16px;width:30px">Readme</text>
+            </view>
+            <view style="display:inline-block;">
+                    <image  class="jiantou" src="../../assets/jiantou_btn.png" style="margin-left:240px;vertical-align:middle;line-height:40px;"></image>
+            </view>
+    
+</view>-->
 
  <view class="body-view">
     <loading hidden="{{hidden}}" bindchange="loadingChange">
