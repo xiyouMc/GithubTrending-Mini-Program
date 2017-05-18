@@ -30,7 +30,9 @@ header={
 class Image:
     def GET(self,rep):
         png = rep.split('/')[-1]
-        c = Image.open('Image/' + png)
+        print png
+        with open('Image/' + png,'r') as f:
+            c = f.read()
         return c
 class ReposSearch:
     def GET(self):
