@@ -92,7 +92,7 @@ class Repos:
         _json = requests.get(github_url,verify=False,headers=header)
         if 'README.md' in github_url:
             _j = json.loads(_json.text)
-            if _j['message'] == 'Not Found':
+            if _j.get('message') == 'Not Found':
                 github_url = github_url.replace('README.md','ReadMe.md')
                 _json = requests.get(github_url,verify=False,headers=header)
         with open(dirs + '/' + _get_time() + url_md5,'w') as f:
