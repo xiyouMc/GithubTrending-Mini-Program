@@ -3,7 +3,7 @@
 </view>
 <view class="about_container">
 <view  style="margin-top:10px;line-height:24px">
-<text class="item2">这应该是国内访问速度最快的Github平台了，在这里你可以查看当天最热的开源代码、查询代码、项目文档，更多牛逼的功能等着你!!!</text>
+<text class="item2" style="text-indent:25px">   这应该是国内访问速度最快的Github平台了，在这里你可以查看当天最热的开源代码、查询代码、项目文档，更多牛逼的功能等着你!!!</text>
 </view>
 </view>
 
@@ -36,5 +36,6 @@
 </view>
 
 <view style="vertical-align: middle;text-align:center">
+<text style="font-size:14px">点击二维码，保存到相册，扫一扫即可关注</text>
 <image src="../../assets/python_qcode.jpg" style="width:200px;height:200px;" bindtap="ImgTap"></image>
 </view>

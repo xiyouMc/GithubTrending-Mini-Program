@@ -30,6 +30,7 @@
   padding-left: 10px;
   width: 30.1%;
   background-color: #FFFFFF;
+  padding-top:5px;
 }
 .count_item_right{
   border-bottom: gray solid 0.1px;
@@ -54,10 +55,10 @@
   font-size: 13px
 }
 .jiantou{
-    width: 20px;
-    height: 20px;
+    width: 23px;
+    height: 23px;
     margin-left: 10px;
-    margin-right: 5px
+    margin-right: 10px
 }
 .item_right{
   width: 49%;

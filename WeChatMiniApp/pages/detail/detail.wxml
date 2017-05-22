@@ -98,8 +98,8 @@
             <view style="display:inline-block;width:30px">
             <text style="line-height:40px;font-size:16px;width:30px">Source</text>
             </view>
-            <view style="display:inline-block;">
-            <image  class="jiantou" src="../../assets/jiantou_btn.png" style="margin-left:240px;vertical-align:middle;line-height:40px;"></image>
+            <view style="display:inline-block;float:right;vertical-align:middle;height:40px;text-align:center">
+            <image  class="jiantou" src="../../assets/jiantou_btn.png" style="margin-right:3px;line-height:20px;vertical-align:middle;margin-top:10px"></image>
             </view>
     </view>
 
@@ -110,11 +110,13 @@
             <view style="display:inline-block;width:30px">
             <text style="line-height:40px;font-size:16px;">Readme</text>
             </view>
-            <view style="display:inline-block;">
-            <image  class="jiantou" src="../../assets/jiantou_btn.png" style="margin-left:240px;vertical-align:middle;line-height:40px;"></image>
+            <view style="display:inline-block;float:right;vertical-align:middle;height:40px;text-align:center">
+            <image  class="jiantou" src="../../assets/jiantou_btn.png" style="margin-right:3px;line-height:20px;vertical-align:middle;margin-top:10px"></image>
             </view>
     </view>
 
+    <button open-type="share">分享</button>
+  
 <!--<view class="btn_item" style="flex-direction:row;" catchtap="readme_click" data-link="{{ readme_link}}">
             <view style="display:inline-block;">
                     <image class="jiantou" src="../../assets/readme.png"  style="vertical-align:middle;line-height:40px;" ></image>

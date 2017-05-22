@@ -79,8 +79,8 @@ Page({
   },
   ImgTap:function(){
     wx.previewImage({
-      current: '../../assets/python_qcode.jpg', // 当前显示图片的http链接
-      urls: ['../../assets/python_qcode.jpg',''] // 需要预览的图片http链接列表
+      current: 'https://python.0x2048.com/v1/image/python_qcode.jpg', // 当前显示图片的http链接
+      urls: ['https://python.0x2048.com/v1/image/python_qcode.jpg',''] // 需要预览的图片http链接列表
     })
   }
 })
