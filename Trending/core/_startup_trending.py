@@ -98,7 +98,7 @@ class Repos:
                 _j = json.loads(_json.text)
                 if _j.get('message') == 'Not Found':
                      github_url = github_url.replace('ReadMe.md','README.rst')
-                    _json = requests.get(github_url,verify=False,headers=header)
+                     _json = requests.get(github_url,verify=False,headers=header)
         with open(dirs + '/' + _get_time() + url_md5,'w') as f:
             f.write(_json.text.encode('utf-8'))
         return _json.text
