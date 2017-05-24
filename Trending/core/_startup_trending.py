@@ -43,7 +43,7 @@ class ReposSearch:
         if not os.path.exists(search):
             os.mkdir(search)
         with open(search+'/q.txt','a') as f:
-            f.write(q + '\n')
+            f.write( _get_time()  + '----'+ q + '\n')
         q = urllib.quote(str(q))
         print q
         api = SEARCH_API % q
