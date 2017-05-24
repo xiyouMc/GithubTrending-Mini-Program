@@ -27,7 +27,7 @@ var GetList = function(that){
       });
     }
   });
-}
+};
 Page({
  data:{
   hidden:true,
