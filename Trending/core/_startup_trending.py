@@ -42,7 +42,7 @@ class ReposSearch:
         q = params['q']
         if not os.path.exists(search):
             os.mkdir(search)
-        with open(search+'/q.txt','w') as f:
+        with open(search+'/q.txt','a') as f:
             f.write(q + '\n')
         q = urllib.quote(str(q))
         print q
