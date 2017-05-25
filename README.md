@@ -47,10 +47,10 @@
 ![](http://upload-images.jianshu.io/upload_images/4653472-90ad79d09f150843.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
 
 效果图
-![](http://upload-images.jianshu.io/upload_images/4653472-3ba1bce01266f9f2?imageMogr2/auto-orient/strip)
+![](https://github.com/xiyouMc/GithubTrending/blob/master/img/start.gif?raw=true)
 (启动小程序，默认展示当天最热开源项目,并支持查看文档)
 
-![](http://upload-images.jianshu.io/upload_images/4653472-e142717e120e467a?imageMogr2/auto-orient/strip)
+![](https://github.com/xiyouMc/GithubTrending/blob/master/img/WebHubGif.gif?raw=true)
 (支持搜索代码)
 
 **后续将支持的功能**
