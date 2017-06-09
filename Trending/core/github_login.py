@@ -24,7 +24,7 @@ class GithubLogin:
         user,avatar,secret_username = self.login()
         js ={
             'user':user,
-            'avatar':avatar.replace('40','200'),
+            'avatar':avatar.replace('40','400'),
             'fuck_username':secret_username
         }
         return json.dumps(js)
