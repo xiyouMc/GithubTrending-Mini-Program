@@ -5,29 +5,19 @@ import web
 import json
 from time import time
 import requests
-import common,logging,datetime,os,trending_html_parse
+import common,logging,os,trending_html_parse
 import util
-import github_token
+from _header import header
 import hashlib,urllib
-CODEHUB_API = 'http://trending.codehub-app.com/v2/trending?since=%s'
-CODEHUB_API_LAN = 'http://trending.codehub-app.com/v2/trending?since=%s&language=%s'
-CODEHUB_API_LANGUAGES = 'http://trending.codehub-app.com/v2/languages'
-SEARCH_API = 'https://api.github.com/search/repositories?q=%s&sort=stars&order=desc'
-urls = (
-    '/all/','AllLang',
-    '/capture/(.*)','Capture',
-    '/v1/trending','Trending',
-    '/v1/languages','Languages',
-    '/v1/repos','Repos',
-    '/v1/repos/search','ReposSearch',
-    '/v1/image/(.*)','Image'
-)
+from github_login import GithubLogin
+from github_star import GithubStar
+from urls import urls
+from api import CODEHUB_API,CODEHUB_API_LAN,CODEHUB_API_LANGUAGES,SEARCH_API
+from _repo_search import ReposSearch
+from _trending import Trending
+from _repo import Repos
 app = web.application(urls,globals())
-dirs = 'CodeJsonData'
-search = 'Search'
-header={
-    'Authorization':' token '+github_token.token
-}
+
 class Image:
     def GET(self,rep):
         png = rep.split('/')[-1]
@@ -35,78 +25,11 @@ class Image:
         with open('Image/' + png,'r') as f:
             c = f.read()
         return c
-class ReposSearch:
-    def GET(self):
-        print web.input()
-        params = util.getInput(web.input())
-        q = params['q']
-        if not os.path.exists(search):
-            os.mkdir(search)
-        with open(search+'/q.txt','a') as f:
-            f.write( _get_time()  + '----'+ q + '\n')
-        q = urllib.quote(str(q))
-        print q
-        api = SEARCH_API % q
-        print api,header
-        r = requests.get(api, verify=False,headers=header)
-        return r.text
-class Trending:
-    def GET(self):
-        if not os.path.exists(dirs):
-            os.mkdir(dirs)
-        
-        print web.input()
-        params = util.getInput(web.input())
-        print params
-        since = params['since']
-        language = params.get('language')
-        print language
-        if not language == None:
-            filename = _get_time() + since + language + '.json'
-        else:
-            filename = _get_time() + since + '.json'
-        if os.path.exists(dirs + '/' + filename):
-            with open(dirs + '/' + filename,'r') as f:
-                content = f.readline()
-            if not content == '':
-                return content
-        if not language == None:
-            trending_api = CODEHUB_API_LAN % (since,language)           
-        else:
-            trending_api = CODEHUB_API % since           
-        _trending_json = requests.get(trending_api)
-        with open('CodeJsonData/' + filename,'w') as f:
-            f.write(_trending_json.text.encode('utf-8'))
-        return _trending_json.text
+
 class Languages:
     def GET(self):
         _lans_json = requests.get(CODEHUB_API_LANGUAGES,headers=header)
         return _lans_json.text
-class Repos:
-    def GET(self):
-        params = util.getInput(web.input())
-        github_url = params['github']
-        m2 = hashlib.md5()   
-        m2.update(github_url)   
-        url_md5 =  m2.hexdigest()   
-        if os.path.exists(dirs + '/' + _get_time() + url_md5):
-            with open(dirs + '/' + _get_time() + url_md5,'r') as f:
-                c = f.readline()
-            if not c == None:
-                return c
-        _json = requests.get(github_url,verify=False,headers=header)
-        if 'README.md' in github_url:
-            _j = json.loads(_json.text)
-            if _j.get('message') == 'Not Found':
-                github_url = github_url.replace('README.md','ReadMe.md')
-                _json = requests.get(github_url,verify=False,headers=header)
-                _j = json.loads(_json.text)
-                if _j.get('message') == 'Not Found':
-                     github_url = github_url.replace('ReadMe.md','README.rst')
-                     _json = requests.get(github_url,verify=False,headers=header)
-        with open(dirs + '/' + _get_time() + url_md5,'w') as f:
-            f.write(_json.text.encode('utf-8'))
-        return _json.text
 
 class Capture:
     def GET(self,rep):
@@ -139,8 +62,6 @@ class AllLang:
                 f.write(json.dumps(_json))
                 f.close()
                 return json.dumps(_json)
-def _get_time():
-        return datetime.datetime.now().strftime('%Y-%m-%d')
 
 if __name__ == '__main__':
     app.run()

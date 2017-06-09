@@ -1,4 +1,8 @@
-import web
+import web,datetime
+
+dirs = 'CodeJsonData'
+search = 'Search'
+
 def getInput(input):
     return htmlquote(dict(input))
 
@@ -9,3 +13,5 @@ def htmlquote(inputData):
        for k,v in inputData.items():
             inputData[k] = htmlquote(v)
     return inputData
+def _get_time():
+    return datetime.datetime.now().strftime('%Y-%m-%d')
