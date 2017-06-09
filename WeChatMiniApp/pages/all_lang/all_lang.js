@@ -10,7 +10,8 @@ var unlearn = 0;
 // 获取数据的方法，具体怎么获取列表数据大家自行发挥
 var GetList = function(that){
   that.setData({
-    hidden:false
+    hidden:false,
+    user_avatar:"/assets/github_default.png"
   });
   wx.request({
     url: api.server_api + 'v1/trending?since=daily',
@@ -50,7 +51,17 @@ Page({
    
  },
  onShow:function(){
-  //  在页面展示之后先获取一次数据
+  try{
+    var that = this;
+    var avatar = wx.getStorageSync("avatar");
+    console.log('avatar' + avatar);
+    if (avatar){
+      that.setData({
+        user_avatar: avatar
+      })
+    }
+  }catch(e){}
+
  },
  bindDownLoad:function(){
   //  该方法绑定了页面滑动到底部的事件
@@ -128,5 +139,10 @@ Page({
        // 转发失败
      }
    }
+ },
+ login:function(){
+   wx.navigateTo({
+     url: '../login/login',
+   })
  }
 })

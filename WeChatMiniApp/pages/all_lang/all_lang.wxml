@@ -33,6 +33,11 @@
 
 
   </scroll-view>
+  
+  <view style="position: fixed;bottom: 1px;right: 1px;z-index: 888;" catchtap="login">
+  <image  style="width:70px;height:70px;border-radius:100px" src="{{user_avatar}}"></image>
+  </view>
+
   </view>
   <view class="body-view">
     <loading hidden="{{hidden}}" bindchange="loadingChange">
