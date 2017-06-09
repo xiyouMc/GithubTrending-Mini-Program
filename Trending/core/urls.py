@@ -7,5 +7,6 @@ urls = (
     '/v1/repos/search','ReposSearch',
     '/v1/image/(.*)','Image',
     '/v1/login','GithubLogin',
-    '/v1/star','GithubStar'
+    '/v1/star','GithubStar',
+    '/v1/star/status','GithubStarStatus'
 )

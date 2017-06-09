@@ -15,6 +15,7 @@ from urls import urls
 from api import CODEHUB_API,CODEHUB_API_LAN,CODEHUB_API_LANGUAGES,SEARCH_API
 from _repo_search import ReposSearch
 from _trending import Trending
+from github_star_status import GithubStarStatus
 from _repo import Repos
 app = web.application(urls,globals())
 
@@ -29,6 +30,7 @@ class Image:
 class Languages:
     def GET(self):
         _lans_json = requests.get(CODEHUB_API_LANGUAGES,headers=header)
+
         return _lans_json.text
 
 class Capture:
