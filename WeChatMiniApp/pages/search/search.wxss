@@ -207,6 +207,21 @@ color: #4F94CD
   color: #555;
 }
 
-
+.option{
+  margin-left:auto;
+margin-right:auto;
+display:inline-block;
+width: 33.33%;
+text-align: center
+}
+.option_menu{
+  width:13px;
+  height:13px;
+  text-align: center
+}
+.option_menu_size{
+  font-size: 10pt;
+  margin-left: 5px
+}
   
   

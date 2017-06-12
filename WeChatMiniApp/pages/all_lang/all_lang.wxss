@@ -4,7 +4,7 @@
     margin-left:10px;
     margin-bottom:10px;
     padding-bottom: 25px;
-    font-size: 20px;
+    font-size: 17px;
     margin-top: -10px;
     line-height:25px;
 }
@@ -99,4 +99,20 @@ background-color:#000000;
 filter:alpha(opacity=80);  
 -moz-opacity:0.7;opacity: 0.7;
 color: #4F94CD
+}
+.option{
+  margin-left:auto;
+margin-right:auto;
+display:inline-block;
+width: 33.33%;
+text-align: center
+}
+.option_menu{
+  width:13px;
+  height:13px;
+  text-align: center
+}
+.option_menu_size{
+  font-size: 10pt;
+  margin-left: 5px
 }

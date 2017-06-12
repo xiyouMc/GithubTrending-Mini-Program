@@ -80,51 +80,59 @@ Page({
   username:function(e){
     username = e.detail.value;
   },
+  focus_pwd:function(e){
+    this.setData({
+      focus:true
+    })
+  },
   password:function(e){
     password = e.detail.value;
-  },
-  signIn:function(){
     const that = this;
-    if(username === "" || password === ""){
+    if (username === "" || password === "") {
       wx.showToast({
         title: '请输入信息',
       })
-    }else{
+    } else {
       that.setData({
         hidden: false
       });
       wx.request({
-        url: api.server_api + "v1/login?username="+username + "&password="+password,
+        url: api.server_api + "v1/login?username=" + username + "&password=" + password,
         success: function (res) {
-        if(res.data.user === "login_error"){
-          wx.showToast({
-            title: '账号密码错误',
-          })
-        }else{
+          if (res.data.user === "login_error") {
+            wx.showToast({
+              title: '账号密码错误',
+            })
+          } else {
             console.log(res.data.fuck_username);
-            try{
+            try {
               wx.setStorageSync("username", res.data.user);
               wx.setStorageSync("fuck_username", res.data.fuck_username);
               wx.setStorageSync("avatar", res.data.avatar)
-            }catch(e){  
-              console.log(e)        
+            } catch (e) {
+              console.log(e)
             }
             that.setData({
               github_src: res.data.avatar,
-              hidden_login:true
+              hidden_login: true
             });
             wx.setNavigationBarTitle({
               title: res.data.user,
             })
-        }     
+          }
         },
-        complete:function(){
+        complete: function () {
           that.setData({
-            hidden:true
+            hidden: true
           })
         }
       })
     }
-
+  },
+  ImgTap: function () {
+    wx.previewImage({
+      current: 'https://python.0x2048.com/v1/image/python_qcode.jpg', // 当前显示图片的http链接
+      urls: ['https://python.0x2048.com/v1/image/python_qcode.jpg', ''] // 需要预览的图片http链接列表
+    })
   }
 })

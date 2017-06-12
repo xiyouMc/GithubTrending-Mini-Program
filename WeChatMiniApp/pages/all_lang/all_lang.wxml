@@ -1,8 +1,20 @@
-<view>       
+<view>     
+<view style="text-align:center;background-color:#4D4D4D">
+<picker bindchange="bindPickerChange" value="{{index}}" range="{{array}}">
+<view style="overflow: hidden;display:inline">
+ <text style="color:white;size:10pt;">
+  {{array[index]}}
+  </text>
+  <image style="width:18px;height:18px;" src="/assets/jiantou.png"></image>
+</view>
+</picker>
+
+</view>  
   <scroll-view scroll-top="{{scrollTop}}" scroll-y="true" style="height:{{scrollHeight}}px;margin-top:12px;"
     class="list" bindscrolltolower="bindDownLoad" bindscroll="scroll"
     enable-back-to-top="true" >
-    <view  wx:key="item" wx:for="{{list}}" data-link="{{ item.url }}" catchtap="cellTap" >
+    <view  wx:key="item" wx:for="{{list}}"   style="border-bottom: #EDEDED solid 10px;padding-bottom:10px;margin-bottom:10px" >
+    <view catchtap="cellTap" data-link="{{ item.url }}">
     <view style="float:left;">
           <image class="user_pic"  src="{{item.owner.avatar_url}}" ></image>
     </view>
@@ -19,9 +31,9 @@
       <view class="star" style="text-align left">
       <text class="stars">{{item.language}}</text>
           <image class = 'jiantou' src="../../assets/star.png"></image>
-            <text class="stars">{{item.stargazers_count}}</text>  
+            <text class="stars">{{list[index].stargazers_count}}</text>  
             <image class = 'jiantou' src="../../assets/fork.png"></image>
-            <text class="stars">{{item.forks_count}}</text>  
+            <text class="stars">{{item.forks_count}}</text>
 
             <image class = 'jiantou' src="../../assets/admin.png"></image>
             <text class="admin">{{item.owner.login}}</text>  
@@ -29,13 +41,29 @@
 </view>    
 
       <view class="devide"/>
+</view>
+      <view >
+<view class="option" bindtap="star_repo" data-link="{{ index }}" animation="{{animationData+item.url}}">
+<image class="option_menu" src="{{star_img[index]}}"></image>
+<text class="option_menu_size" style="color:{{ star_color[index] }}">{{ stared[index] }}赞</text>
+</view>
+
+<view  class="option" bindtap="comment_repo" data-link="{{ item.url }}" >
+<image class="option_menu" src="/assets/comment.png"></image>
+<text class="option_menu_size">评论</text>
+</view>
+<view  class="option" open-type="share" bindtap="share_repo" data-link="{{ item.url }}">
+<image class="option_menu" src="/assets/share.png" ></image>
+<text class="option_menu_size">分享</text>
+</view>
+</view>
     </view>
 
 
   </scroll-view>
   
-  <view style="position: fixed;bottom: 1px;right: 1px;z-index: 888;" catchtap="login">
-  <image  style="width:70px;height:70px;border-radius:100px" src="{{user_avatar}}"></image>
+  <view style="position: fixed;bottom: 10px;right: 10px;z-index: 888;" catchtap="login">
+  <image  style="width:50px;height:50px;border-radius:100px" src="{{user_avatar}}"></image>
   </view>
 
   </view>

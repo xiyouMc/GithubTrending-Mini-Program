@@ -4,3 +4,6 @@
 .DS_Store
 *.log
 Trending/core/github_token.py
+*/Search/
+*/cookies/
+Trending/core/cookies/

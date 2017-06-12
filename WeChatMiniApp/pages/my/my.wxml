@@ -1,8 +1,0 @@
-<!--pages/my/my.wxml-->
-<view style="text-align:center;">
-<view>
-<image style="width:100px;height:100px;" src="{{github_src}}" catchtap="login"></image>
-</view>
-
-</view>
-

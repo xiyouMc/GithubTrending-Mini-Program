@@ -1,4 +1,4 @@
-  <import src="../../wxSearch/wxSearch.wxml"/>
+<import src="../../wxSearch/wxSearch.wxml"/>
 <import src="../template/template.wxml" />
 
 <!--<template is="wxSearch" data="{{wxSearchData}}"/>-->
@@ -8,7 +8,9 @@
   <scroll-view scroll-top="{{scrollTop}}" scroll-y="true" style="height:{{scrollHeight}}px;"
     class="list" bindscrolltolower="bindDownLoad" bindscroll="scroll"
     enable-back-to-top="true" >
-    <view class="item" wx:key="item" wx:for="{{list}}" data-link="{{ item.url }}" catchtap="cellTap" >
+    <view class="item" wx:key="item" wx:for="{{list}}" 
+    style="border-bottom: #EDEDED solid 10px;padding-bottom:10px;margin-bottom:10px" >
+     <view catchtap="cellTap" data-link="{{ item.url }}">
     <view style="float:left;">
           <image class="user_pic"  src="{{item.owner.avatar_url}}" ></image>
     </view>
@@ -32,10 +34,28 @@
             <image class = 'jiantou' src="../../assets/admin.png"></image>
             <text class="admin">{{item.owner.login}}</text>  
       </view>  
-</view>    
+</view>  
+<view class="devide"/>  
+</view>
+ <view >
 
-      <view class="devide"/>
+<view class="option" bindtap="star_repo" data-link="{{ index }}" animation="{{animationData+item.url}}">
+<image class="option_menu" src="{{star_img[index]}}"></image>
+<text class="option_menu_size" style="color:{{ star_color[index] }}">{{ stared[index] }}赞</text>
+</view>
+
+<view  class="option" bindtap="comment_repo" data-link="{{ item.url }}" >
+<image class="option_menu" src="/assets/comment.png"></image>
+<text class="option_menu_size">评论</text>
+</view>
+<view  class="option" open-type="share" bindtap="share_repo" data-link="{{ item.url }}">
+<image class="option_menu" src="/assets/share.png" ></image>
+<text class="option_menu_size">分享</text>
+</view>
+</view>
+      
     </view>
+
 
 
   </scroll-view>
@@ -43,7 +63,7 @@
 
   <view class="wxSearch-section" style="position:fixed; top:0;width:95%;height:100px;">
   <view class="wxSearch-pancel" >
-    <input bindinput="wxSearchInput" bindfocus="wxSerchFocus" value="{{wxSearchData.value}}" bindblur="wxSearchBlur" class="wxSearch-input" placeholder="搜一搜" />
+    <input bindconfirm="wxSearchInput" bindfocus="wxSerchFocus" value="{{wxSearchData.value}}" bindblur="wxSearchBlur" class="wxSearch-input" placeholder="搜一搜" />
   </view>
   <template is="button" data="{{bindtapaction:'searchGithub', bcolor:'#04BE02', loading: loading, context:'搜索'}}" />
 </view>
