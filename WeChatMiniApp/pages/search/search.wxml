@@ -4,7 +4,7 @@
 <!--<template is="wxSearch" data="{{wxSearchData}}"/>-->
 
 
-<view style="margin-top:120px">       
+<view style="margin-top:70px">       
   <scroll-view scroll-top="{{scrollTop}}" scroll-y="true" style="height:{{scrollHeight}}px;"
     class="list" bindscrolltolower="bindDownLoad" bindscroll="scroll"
     enable-back-to-top="true" 
@@ -62,11 +62,11 @@
   </scroll-view>
   </view>
 
-  <view class="wxSearch-section" style="position:fixed; top:0;width:95%;height:100px;">
+  <view class="wxSearch-section" style="position:fixed; top:0;width:95%;height:40px;padding-top:10px">
   <view class="wxSearch-pancel" >
-    <input bindconfirm="wxSearchInput" bindfocus="wxSerchFocus" value="{{wxSearchData.value}}" bindblur="wxSearchBlur" class="wxSearch-input" placeholder="搜一搜" />
+    <input bindconfirm="wxSearchInput" bindfocus="wxSerchFocus" value="{{wxSearchData.value}}" bindblur="wxSearchBlur" class="wxSearch-input" placeholder="搜一搜，回车确定" />
   </view>
-  <template is="button" data="{{bindtapaction:'searchGithub', bcolor:'#04BE02', loading: loading, context:'搜索'}}" />
+  <!--<template is="button" data="{{bindtapaction:'searchGithub', bcolor:'#04BE02', loading: loading, context:'搜索'}}" />-->
 </view>
 
   <view class="body-view">

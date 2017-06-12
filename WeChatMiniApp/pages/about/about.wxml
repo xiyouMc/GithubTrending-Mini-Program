@@ -37,5 +37,8 @@
 
 <view style="vertical-align: middle;text-align:center">
 <text style="font-size:14px">点击二维码，保存到相册，扫一扫即可关注</text>
-<image src="../../assets/python_qcode.jpg" style="width:200px;height:200px;" bindtap="ImgTap"></image>
+</view>
+
+<view style="vertical-align: middle;text-align:center">
+<image src="../../assets/python_qcode.jpg" style="width:50px;height:50px;" bindtap="ImgTap"></image>
 </view>

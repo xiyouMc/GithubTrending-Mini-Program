@@ -18,6 +18,7 @@ Page({
   },
   onReady: function () {
     const that = this
+    console.log(api.server_api + 'v1/repos?github=' + readme_link)
     wx.request({
       url: api.server_api + 'v1/repos?github=' + readme_link,
       success: function (res) {

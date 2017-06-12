@@ -10,6 +10,31 @@ var GetStared = function (that, res) {
   that.setData({
     scrollTop: 0
   })
+
+  star_img = new Array(res.length)
+  stared = [];
+  star_color = new Array(res.length);
+  that.setData({
+    stared: stared,
+    star_img: star_img,
+    star_color: star_color
+  })
+  var json = ''
+  for (var i = 0; i < res.length; i++) {
+    stared[i] = '';
+    star_img[i] = '/assets/like.png'
+    that.setData({
+      star_img: star_img
+    });
+    var item = '"' + res[i].owner.login + '/' + res[i].name + '"';
+    if (i < res.length - 1) {
+      json += item + ',';
+    } else {
+      json += item;
+    }
+  }
+  json = '[' + json + ']'
+
   var fuck_username = wx.getStorageSync("fuck_username");
   console.log(fuck_username)
   console.log(res)
@@ -17,30 +42,6 @@ var GetStared = function (that, res) {
     wx.showNavigationBarLoading();
     var repo_data = res;
     repo_d = repo_data;
-    star_img = new Array(res.length)
-    stared = [];
-    star_color = new Array(res.length);
-    that.setData({
-      stared: stared,
-      star_img: star_img,
-      star_color: star_color
-    })
-    var json = ''
-    for (var i = 0; i < res.length; i++) {
-      stared[i] = '';
-      star_img[i] = '/assets/like.png'
-      that.setData({
-        star_img: star_img
-      });
-      var item = '"' + res[i].owner.login + '/' + res[i].name + '"';
-      if (i < res.length - 1) {
-        json += item + ',';
-      } else {
-        json += item;
-      }
-    }
-    json = '[' + json + ']'
-
     wx.request({
       url: api.server_api + 'v1/star/status?githubs=' + json + '&username=' + fuck_username,
       success: function (e) {
@@ -176,7 +177,9 @@ Page({
   },
   searchGithub: function (e) {
     var that = this
-    WxSearch.wxSearchAddHisKey(that);
+    WxSearch.wxSearchInput(e, that);
+    const search_q = e.detail.value;
+    console.log(search_q)
     that.setData({
       hidden: false
     });
@@ -243,6 +246,15 @@ Page({
     WxSearch.wxSearchHiddenPancel(that);
   },
   star_repo: function (e) {
+    if (!repo_d) {
+      wx.showToast({
+        title: '请先登录！！！',
+      })
+      wx.navigateTo({
+        url: '../login/login',
+      });
+      return;
+    }
     var that = this;
     const index = e.currentTarget.dataset.link;
     console.log(index);

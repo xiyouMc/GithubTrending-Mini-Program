@@ -9,41 +9,45 @@ var unlearn = 0;
 var lan = ['All Language', 'Python', 'C', 'Go', 'HTML', 'Java', 'Shell', 'C++', 'C#', 'Ruby', 'PHP', 'Visual-Basic', 'JavaScript',
   'Swift', 'Groovy'];
 var stared;
-var star_img;
+var star_img = [];
 var star_color = [];
 var repo_d;
+var trending_data;
 var GetStared = function (that, res){
   that.setData({
     scrollTop: 0
   })
+
+  var json = ''
+  star_img = new Array(res.data.length)
+  stared = [];
+  star_color = new Array(res.data.length);
+  for (var i = 0; i < res.data.length; i++) {
+    stared[i] = '';
+    star_img[i] = '/assets/like.png'
+    that.setData({
+      star_img: star_img
+    });
+    var item = '"' + res.data[i].owner.login + '/' + res.data[i].name + '"';
+    if (i < res.data.length - 1) {
+      json += item + ',';
+    } else {
+      json += item;
+    }
+  }
+  json = '[' + json + ']'
+
   var fuck_username = wx.getStorageSync("fuck_username");
   if (fuck_username) {
     wx.showNavigationBarLoading();
     var repo_data = res.data;
     repo_d = repo_data;
-    star_img = new Array(res.data.length)
-    stared = [];
-    star_color = new Array(res.data.length);
+   
     that.setData({
       stared: stared,
       star_img: star_img,
       star_color: star_color
-    })
-    var json = ''
-    for (var i = 0; i < res.data.length; i++) {
-      stared[i] = '';
-      star_img[i] = '/assets/like.png'
-      that.setData({
-        star_img: star_img
-      });
-      var item = '"' + res.data[i].owner.login + '/' + res.data[i].name + '"';
-      if (i < res.data.length - 1) {
-        json += item + ',';
-      } else {
-        json += item;
-      }
-    }
-    json = '[' + json + ']'
+    })  
 
     wx.request({
       url: api.server_api + 'v1/star/status?githubs=' + json + '&username=' + fuck_username,
@@ -89,6 +93,7 @@ var GetList = function(that){
       that.setData({
         list : res.data
       });
+      trending_data = res;
       GetStared(that, res);
       
       that.setData({
@@ -155,6 +160,7 @@ Page({
     var avatar = wx.getStorageSync("avatar");
     console.log('avatar' + avatar);
     if (avatar){
+      GetStared(that, trending_data);
       that.setData({
         user_avatar: avatar
       })
@@ -276,6 +282,16 @@ Page({
    })
  },
  star_repo:function(e){
+   console.log(!repo_d)
+   if (!repo_d){
+     wx.showToast({
+       title: '请先登录！！！',
+     })
+     wx.navigateTo({
+       url: '../login/login',
+     });
+     return;
+   }
    var that = this;
    const index = e.currentTarget.dataset.link;
    console.log(index);
@@ -286,7 +302,8 @@ Page({
   //  })
    const github_name = repo_d[index].owner.login + '/' + repo_d[index].name
    var fuck_username = wx.getStorageSync("fuck_username");
-   if (fuck_username) {
+   console.log(fuck_username)
+   if (fuck_username != 0) {
      stared[index] = '已';
      star_img[index] = '/assets/stared.png';
      star_color[index] = '#3cc51f'
