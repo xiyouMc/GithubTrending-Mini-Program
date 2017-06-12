@@ -32,8 +32,7 @@ class GithubStarStatus:
         for t in threads:
             t.setDaemon(True)
             t.start()
-        while not self.repo_size == 0:
-            pass
+        time.sleep(2)
         _json_resp = json.dumps(self._repos)
         print _json_resp,time.time() - time1
         return _json_resp
