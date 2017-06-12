@@ -23,9 +23,9 @@ class Repos:
                 _json_data = json.loads(_json.text)
                 for j in _json_data:
                     print j
-                    n = j['name'].lower()
+                    n = j['name'].split('.')[0].lower()
                     print n
-                    if n == 'readme.md':
+                    if n == 'readme':
                         github_url += j['path']
                         _json = requests.get(github_url,verify=False)
                         break
