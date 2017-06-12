@@ -13,6 +13,9 @@ var star_img;
 var star_color = [];
 var repo_d;
 var GetStared = function (that, res){
+  that.setData({
+    scrollTop: 0
+  })
   var fuck_username = wx.getStorageSync("fuck_username");
   if (fuck_username) {
     wx.showNavigationBarLoading();
@@ -82,7 +85,7 @@ var GetList = function(that){
       'content-type': 'application/json'
     },
     success:function(res){
-      console.log(res.data.length);
+      console.log(res.data);
       that.setData({
         list : res.data
       });
@@ -206,7 +209,9 @@ Page({
        that.setData({
          hidden: true
        });
-       GetStared(that,res)
+       GetStared(that,res);
+       
+
      }
    });
 

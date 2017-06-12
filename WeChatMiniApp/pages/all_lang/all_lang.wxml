@@ -12,7 +12,8 @@
 </view>  
   <scroll-view scroll-top="{{scrollTop}}" scroll-y="true" style="height:{{scrollHeight}}px;margin-top:12px;"
     class="list" bindscrolltolower="bindDownLoad" bindscroll="scroll"
-    enable-back-to-top="true" >
+    enable-back-to-top="true"
+    scroll-top="{{scrollTop}}">
     <view  wx:key="item" wx:for="{{list}}"   style="border-bottom: #EDEDED solid 10px;padding-bottom:10px;margin-bottom:10px" >
     <view catchtap="cellTap" data-link="{{ item.url }}">
     <view style="float:left;">

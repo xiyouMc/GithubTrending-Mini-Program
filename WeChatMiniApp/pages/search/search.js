@@ -7,6 +7,9 @@ var star_img;
 var star_color = [];
 var repo_d;
 var GetStared = function (that, res) {
+  that.setData({
+    scrollTop: 0
+  })
   var fuck_username = wx.getStorageSync("fuck_username");
   console.log(fuck_username)
   console.log(res)

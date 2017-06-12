@@ -47,7 +47,7 @@ Page({
     },
     readme_click(e){
       console.log('click')
-      const readme_link = e.currentTarget.dataset.link.replace('{+path}', 'README.md')
+      const readme_link = e.currentTarget.dataset.link.replace('{+path}', '')
       console.log(readme_link)
       wx.navigateTo({
         url: '../code/code?readme_link=' + readme_link,
