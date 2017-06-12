@@ -3,6 +3,7 @@ import web
 from util import getInput,_get_time,dirs
 from api import CODEHUB_API_LAN,CODEHUB_API
 import requests
+import urllib
 class Trending:
     def GET(self):
         if not os.path.exists(dirs):
@@ -13,7 +14,9 @@ class Trending:
         print params
         since = params.get('since')
         language = params.get('language')
-        print language
+        if not language == None:
+            language = urllib.quote(language)
+            print language
         if not language == None:
             filename = _get_time() + since + language + '.json'
         else:
@@ -26,7 +29,8 @@ class Trending:
         if not language == None:
             trending_api = CODEHUB_API_LAN % (since,language)           
         else:
-            trending_api = CODEHUB_API % since           
+            trending_api = CODEHUB_API % since     
+        print trending_api      
         _trending_json = requests.get(trending_api)
         with open('CodeJsonData/' + filename,'w') as f:
             f.write(_trending_json.text.encode('utf-8'))
