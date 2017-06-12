@@ -14,16 +14,21 @@ class Repos:
                 c = f.readline()
             if not c == None:
                 return c
-        _json = requests.get(github_url,verify=False,headers=header)
+        _json = requests.get(github_url,verify=False)
         if 'README.md' in github_url:
-            _j = json.loads(_json.text)
-            if _j.get('message') == 'Not Found':
-                github_url = github_url.replace('README.md','ReadMe.md')
-                _json = requests.get(github_url,verify=False,headers=header)
-                _j = json.loads(_json.text)
-                if _j.get('message') == 'Not Found':
-                     github_url = github_url.replace('ReadMe.md','README.rst')
-                     _json = requests.get(github_url,verify=False,headers=header)
+            github_url = github_url.replace('README.md','')
+            _json = requests.get(github_url,verify=False)
+            print _json.text
+            if(_json):
+                _json_data = json.loads(_json.text)
+                for j in _json_data:
+                    print j
+                    n = j['name'].lower()
+                    print n
+                    if n == 'readme.md':
+                        github_url += j['path']
+                        _json = requests.get(github_url,verify=False)
+                        break
         with open(dirs + '/' + _get_time() + url_md5,'w') as f:
             f.write(_json.text.encode('utf-8'))
         return _json.text
