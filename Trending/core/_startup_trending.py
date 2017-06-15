@@ -16,6 +16,7 @@ from api import CODEHUB_API,CODEHUB_API_LAN,CODEHUB_API_LANGUAGES,SEARCH_API
 from _repo_search import ReposSearch
 from _trending import Trending
 from github_star_status import GithubStarStatus
+from github_follow import GithubFollow
 from _repo_v2 import ReposV2
 from _repo import Repos
 app = web.application(urls,globals())

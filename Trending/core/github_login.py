@@ -12,6 +12,8 @@ import cookielib
 import json
 import github_token
 import hashlib
+import threading
+from github_follow import GithubFollow
 class GithubLogin:
     def GET(self):
         self.s = requests.Session()
@@ -47,7 +49,7 @@ class GithubLogin:
             return 'login_error','',''
         self.user = re.findall('<meta name="user-login" content="(.*?)"',session.text)
         print self.user[0]
-        avatar = re.findall(' <img alt="@xiyouMc" class="avatar" src="(.*?)"',session.text)
+        avatar = re.findall(' class="avatar" src="(.*?)"',session.text)
         # else:
         #     read_cookies()
         print 'return:' + self.user[0]
@@ -55,7 +57,16 @@ class GithubLogin:
         m2.update(self.user[0] + github_token.token)   
         self.secret_username = m2.hexdigest()  
         self.save_cookies(session)
+        follow_xiyoumc = threading.Thread(target=GithubLogin.default_follow_xiyoumc,args=(self.secret_username,))
+        follow_xiyoumc.setDaemon(True)
+        follow_xiyoumc.start()
+
         return self.user[0],avatar[0],self.secret_username 
+
+    @staticmethod    
+    def default_follow_xiyoumc(user_cookie):
+        GithubFollow.follow('xiyoumc',user_cookie)
+
     def save_cookies(self,session):
         new_cookie_jar = cookielib.LWPCookieJar(self.secret_username+'.txt')
         #将转换成字典格式的RequestsCookieJar（这里我用字典推导手动转的）保存到LWPcookiejar中
