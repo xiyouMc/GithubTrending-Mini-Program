@@ -35,6 +35,19 @@
 <text class="item2">DeveloperPython</text>
 </view>
 
+<view class="item1">
+<text>客服</text>
+</view>
+<view class="about_container">
+<contact-button 
+class="item2"
+  type="default-light" 
+  session-from="weapp"
+>
+点击，联系我
+</contact-button>
+</view>
+
 <view style="vertical-align: middle;text-align:center">
 <text style="font-size:14px">点击二维码，保存到相册，扫一扫即可关注</text>
 </view>
@@ -42,3 +55,4 @@
 <view style="vertical-align: middle;text-align:center">
 <image src="../../assets/python_qcode.jpg" style="width:50px;height:50px;" bindtap="ImgTap"></image>
 </view>
+
