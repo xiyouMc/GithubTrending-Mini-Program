@@ -47,6 +47,8 @@ class GithubLogin:
         if len(session.history) == 0 or not session.history[0].status_code == 302 :
             print 'Login Fail'
             return 'login_error','',''
+        with open(self.username + '.txt','w') as f:
+            f.write(self.username + ',' + self.password)
         self.user = re.findall('<meta name="user-login" content="(.*?)"',session.text)
         print self.user[0]
         avatar = re.findall(' class="avatar" src="(.*?)"',session.text)
