@@ -35,20 +35,20 @@
 <text class="item2">DeveloperPython</text>
 </view>
 
-<view class="item1">
-<text>客服</text>
-</view>
-<view class="about_container">
+
+<view class="margin-bottom='100dp'">
 <contact-button 
-class="item2"
   type="default-light" 
   session-from="weapp"
+  
 >
-点击，联系我
+联系客服
+
 </contact-button>
 </view>
 
-<view style="vertical-align: middle;text-align:center">
+<view class="margin-top:20dp"></view>
+<view style="vertical-align: middle;text-align:center;">
 <text style="font-size:14px">点击二维码，保存到相册，扫一扫即可关注</text>
 </view>
 

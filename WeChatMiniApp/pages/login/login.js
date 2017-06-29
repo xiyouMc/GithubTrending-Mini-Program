@@ -2,6 +2,49 @@
 var username = "";
 var password = "";
 var api = require('../../utils/request_api.js')
+var login = function(that,username,password){
+  console.log(username + password)
+  if (username === "" || password === "") {
+    wx.showToast({
+      title: '请输入信息',
+    })
+  } else {
+    that.setData({
+      hidden: false
+    });
+    wx.request({
+      url: api.server_api + "v1/login?username=" + username + "&password=" + password,
+      success: function (res) {
+        if (res.data.user === "login_error") {
+          wx.showToast({
+            title: '账号密码错误',
+          })
+        } else {
+          console.log(res.data.fuck_username);
+          try {
+            wx.setStorageSync("username", res.data.user);
+            wx.setStorageSync("fuck_username", res.data.fuck_username);
+            wx.setStorageSync("avatar", res.data.avatar)
+          } catch (e) {
+            console.log(e)
+          }
+          that.setData({
+            github_src: res.data.avatar,
+            hidden_login: true
+          });
+          wx.setNavigationBarTitle({
+            title: res.data.user,
+          })
+        }
+      },
+      complete: function () {
+        that.setData({
+          hidden: true
+        })
+      }
+    })
+  }
+};
 Page({
   /**
    * 页面的初始数据
@@ -85,49 +128,17 @@ Page({
       focus:true
     })
   },
+  login:function(e){
+    const that = this;
+    login(that,username, password)
+  },
+  pw:function(e){
+    password = e.detail.value;
+  },
   password:function(e){
     password = e.detail.value;
     const that = this;
-    if (username === "" || password === "") {
-      wx.showToast({
-        title: '请输入信息',
-      })
-    } else {
-      that.setData({
-        hidden: false
-      });
-      wx.request({
-        url: api.server_api + "v1/login?username=" + username + "&password=" + password,
-        success: function (res) {
-          if (res.data.user === "login_error") {
-            wx.showToast({
-              title: '账号密码错误',
-            })
-          } else {
-            console.log(res.data.fuck_username);
-            try {
-              wx.setStorageSync("username", res.data.user);
-              wx.setStorageSync("fuck_username", res.data.fuck_username);
-              wx.setStorageSync("avatar", res.data.avatar)
-            } catch (e) {
-              console.log(e)
-            }
-            that.setData({
-              github_src: res.data.avatar,
-              hidden_login: true
-            });
-            wx.setNavigationBarTitle({
-              title: res.data.user,
-            })
-          }
-        },
-        complete: function () {
-          that.setData({
-            hidden: true
-          })
-        }
-      })
-    }
+    login(that,username,password)
   },
   ImgTap: function () {
     wx.previewImage({

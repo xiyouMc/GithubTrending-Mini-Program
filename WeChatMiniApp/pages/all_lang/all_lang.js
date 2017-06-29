@@ -70,6 +70,7 @@ var GetStared = function (that, res){
             }
           }
         }
+        wx.hideNavigationBarLoading();
       },
       complete:function(){
         wx.hideNavigationBarLoading();
@@ -148,7 +149,7 @@ Page({
  },
  onShow:function(){
   try{
-
+    var that = this;
     var animation = wx.createAnimation({
       duration: 1000,
       timingFunction: 'ease',
@@ -156,14 +157,18 @@ Page({
 
     this.animation = animation
 
-    var that = this;
     var avatar = wx.getStorageSync("avatar");
     console.log('avatar' + avatar);
-    if (avatar){
-      GetStared(that, trending_data);
+    if (avatar) {
       that.setData({
         user_avatar: avatar
-      })
+      })   
+    
+    var logined = wx.getStorageSync('logined')
+    if (logined !== true){
+        GetStared(that, trending_data);     
+        wx.setStorageSync('logined', true) 
+    }
     }
   }catch(e){}
 
