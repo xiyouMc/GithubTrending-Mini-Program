@@ -14,9 +14,6 @@ class Trending:
         print params
         since = params.get('since')
         language = params.get('language')
-        # Debug
-        if language is None:
-            language = 'java'
         if not language == None:
             language = urllib.quote(language)
             print language
