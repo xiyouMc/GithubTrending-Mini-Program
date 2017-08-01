@@ -8,6 +8,7 @@ urls = (
     '/v1/image/(.*)','Image',
     '/v1/login','GithubLogin',
     '/v1/star','GithubStar',
+    '/v1/unstar','GithubUnStar',
     '/v1/star/status','GithubStarStatus',
     '/v2/repos','ReposV2',
     '/v2/follow','GithubFollow'

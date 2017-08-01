@@ -274,6 +274,7 @@ Page({
         star_img: star_img,
         star_color: star_color
       })
+      console.log(api.server_api + 'v1/star?github=' + github_name + '&username=' + fuck_username)
       wx.request({
         url: api.server_api + 'v1/star?github=' + github_name + '&username=' + fuck_username,
         success: function (e) {

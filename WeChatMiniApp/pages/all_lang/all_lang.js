@@ -309,28 +309,56 @@ Page({
    var fuck_username = wx.getStorageSync("fuck_username");
    console.log(fuck_username)
    if (fuck_username != 0) {
-     stared[index] = '已';
-     star_img[index] = '/assets/stared.png';
-     star_color[index] = '#3cc51f'
-     that.setData({
-       stared: stared,
-       star_img: star_img,
-       star_color: star_color
-     })
-    wx.request({
-      url: api.server_api + 'v1/star?github=' + github_name + '&username=' + fuck_username,
-      success:function(e){
-        console.log(e.data)
-        repo_d[index].stargazers_count = repo_d[index].stargazers_count + 1;     
+
+     if(stared[index] == '已'){
+        stared[index] = ''
+        star_img[index] = '/assets/like.png'
+        star_color[index] = '#030303'
         that.setData({
-          list: repo_d
+          stared: stared,
+          star_img: star_img,
+          star_color: star_color
         })
-        wx.showToast({
-          title: 'Star',
+        wx.request({
+          url: api.server_api + 'v1/unstar?github='+
+          github_name + '&username=' + fuck_username,
+          success:function(e){
+              console.log(e.data)
+              repo_d[index].stargazers_count = repo_d[index].stargazers_count - 1;
+              that.setData({
+                list: repo_d
+              })
+              wx.showToast({
+                title: 'UnStar',
+              })
+              console.log(repo_d[index].stargazers_count)
+          }
         })
-        console.log(repo_d[index].stargazers_count)
-      }
-    })
+     }else{
+       stared[index] = '已';
+       star_img[index] = '/assets/stared.png';
+       star_color[index] = '#3cc51f'
+       that.setData({
+         stared: stared,
+         star_img: star_img,
+         star_color: star_color
+       })
+       console.log(api.server_api + 'v1/star?github=' + github_name + '&username=' + fuck_username)
+       wx.request({
+         url: api.server_api + 'v1/star?github=' + github_name + '&username=' + fuck_username,
+         success: function (e) {
+           console.log(e.data)
+           repo_d[index].stargazers_count = repo_d[index].stargazers_count + 1;
+           that.setData({
+             list: repo_d
+           })
+           wx.showToast({
+             title: 'Star',
+           })
+           console.log(repo_d[index].stargazers_count)
+         }
+       })
+     } 
    }
  },
  comment_repo:function(e){
