@@ -14,7 +14,9 @@ class Repos:
                 c = f.readline()
             if not c == None:
                 return c
+        print("start requests")
         _json = requests.get(github_url,verify=False)
+        print("response:" + _json.text)
         if 'README.md' in github_url:
             github_url = github_url.replace('README.md','')
             _json = requests.get(github_url,verify=False)
