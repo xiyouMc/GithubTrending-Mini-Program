@@ -180,45 +180,73 @@ Page({
     WxSearch.wxSearchInput(e, that);
     const search_q = e.detail.value;
     console.log(search_q)
-    that.setData({
-      hidden: false
-    });
-    console.log(api.server_api + "v1/repos/search?q=" + search_q + "Requests!!!!!!!!!!!!")
-    wx.request({
-      url: api.server_api + "v1/repos/search?q=" + search_q,
-      success: function (res) {
-        that.setData({
-          hidden: true
-        });
-        console.info(res.data);
-        that.setData({
-          list: res.data.items
-        });
-        GetStared(that, res.data.items);
-      }
-    })
+    
+    if (search_q == '') {
+      wx.showToast({
+        title: '请输入',
+        icon: '',
+        image: '',
+        duration: 0,
+        mask: true,
+        success: function (res) { },
+        fail: function (res) { },
+        complete: function (res) { },
+      })
+    }else{
+      that.setData({
+        hidden: false
+      });
+      console.log(api.server_api + "v1/repos/search?q=" + search_q + "Requests!!!!!!!!!!!!")
+      wx.request({
+        url: api.server_api + "v1/repos/search?q=" + search_q,
+        success: function (res) {
+          that.setData({
+            hidden: true
+          });
+          console.info(res.data);
+          that.setData({
+            list: res.data.items
+          });
+          GetStared(that, res.data.items);
+        }
+      })
+    }
   },
   wxSearchInput: function (e) {
     var that = this
     WxSearch.wxSearchInput(e, that);
     search_q = e.detail.value;
-    that.setData({
-      hidden: false
-    });
-    console.log(api.server_api + "v1/repos/search?q=" + search_q + "Requests!!!!!!!!!!!!")
-    wx.request({
-      url: api.server_api + "v1/repos/search?q=" + search_q,
-      success: function (res) {
-        that.setData({
-          hidden: true
-        });
-        console.info(res.data);
-        that.setData({
-          list: res.data.items
-        });
-        GetStared(that, res.data.items);
-      }
-    })
+   
+    if(search_q == ''){
+      wx.showToast({
+        title: '请输入',
+        icon: '',
+        image: '',
+        duration: 0,
+        mask: true,
+        success: function(res) {},
+        fail: function(res) {},
+        complete: function(res) {},
+      })
+    }else{
+      that.setData({
+        hidden: false
+      });
+      console.log(api.server_api + "v1/repos/search?q=" + search_q + "Requests!!!!!!!!!!!!")
+      wx.request({
+        url: api.server_api + "v1/repos/search?q=" + search_q,
+        success: function (res) {
+          that.setData({
+            hidden: true
+          });
+          console.info(res.data);
+          that.setData({
+            list: res.data.items
+          });
+          GetStared(that, res.data.items);
+        }
+      })
+    } 
   },
   
   wxSerchFocus: function (e) {
@@ -266,6 +294,34 @@ Page({
     const github_name = repo_d[index].owner.login + '/' + repo_d[index].name
     var fuck_username = wx.getStorageSync("fuck_username");
     if (fuck_username) {
+
+      if (stared[index] == '已') {
+        stared[index] = ''
+        star_img[index] = '/assets/like.png'
+        star_color[index] = '#030303'
+        that.setData({
+          stared: stared,
+          star_img: star_img,
+          star_color: star_color
+        })
+        wx.request({
+          url: api.server_api + 'v1/unstar?github=' +
+          github_name + '&username=' + fuck_username,
+          success: function (e) {
+            console.log(e.data)
+            repo_d[index].stargazers_count = repo_d[index].stargazers_count - 1;
+            that.setData({
+              list: repo_d
+            })
+            wx.showToast({
+              title: 'UnStar',
+            })
+            console.log(repo_d[index].stargazers_count)
+          }
+        })
+        return;
+      }
+
       stared[index] = '已';
       star_img[index] = '/assets/stared.png';
       star_color[index] = '#3cc51f'

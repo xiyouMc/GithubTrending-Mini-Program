@@ -39,7 +39,13 @@ Page({
               size: res.data.size + "KB",
               owner_name: res.data.owner.login
             })
+          },
+          complete:function(e){
+            that.setData({
+              hidden: true
+            }); 
           }
+      
         });
     },
     binderror:function(e){
