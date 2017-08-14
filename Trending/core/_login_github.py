@@ -61,4 +61,3 @@ def star():
     s.headers.update({'X-Requested-With':'XMLHttpRequest'})
     star_re = s.post(repo + 'star',data=data,verify=False)
     print star_re.text
-default('694449212@qq.com','chaokingMC1993')
