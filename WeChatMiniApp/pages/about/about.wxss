@@ -14,3 +14,9 @@
   font-size:15px;
   color: #969696
 }
+
+.contact{
+  background-color: #3cc51f;
+  width: 100dp;
+  color: white
+}

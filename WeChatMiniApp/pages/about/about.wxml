@@ -36,23 +36,16 @@
 </view>
 
 
-<view class="margin-bottom='100dp'">
-<contact-button 
-  type="default-light" 
-  session-from="weapp"
-  
->
-联系客服
-
-</contact-button>
-</view>
-
-<view class="margin-top:20dp"></view>
+<view class="margin-top:5dp"></view>
 <view style="vertical-align: middle;text-align:center;">
 <text style="font-size:14px">点击二维码，保存到相册，扫一扫即可关注</text>
 </view>
-
 <view style="vertical-align: middle;text-align:center">
 <image src="../../assets/python_qcode.jpg" style="width:50px;height:50px;" bindtap="ImgTap"></image>
+</view>
+
+<view class="margin-bottom='100dp'">
+<button open-type="contact" class="contact"
+>在线客服 </button>
 </view>
 

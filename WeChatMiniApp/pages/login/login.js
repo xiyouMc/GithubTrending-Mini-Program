@@ -12,6 +12,7 @@ var login = function(that,username,password){
     that.setData({
       hidden: false
     });
+    console.log(api.server_api + "v1/login?username=" + username + "&password=" + password)
     wx.request({
       url: api.server_api + "v1/login?username=" + username + "&password=" + password,
       success: function (res) {

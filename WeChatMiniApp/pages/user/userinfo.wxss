@@ -10,7 +10,6 @@
   text-align: center;
   /*border: green solid 1px;*/
   width: screen.width;
-  height: 230px;
   vertical-align: middle;
   flex-direction: column;
 }
@@ -31,7 +30,7 @@
   border-right: gray solid 0.1px;
   border-bottom: gray solid 0.1px;
   padding-left: 10px;
-  width: 30.1%;
+  width: 47%;
   background-color: #fff;
   padding-top: 5px;
 }
@@ -39,7 +38,7 @@
 .count_item_right {
   border-bottom: gray solid 0.1px;
   padding-left: 10px;
-  width: 30.1%;
+  width: 47%;
   background-color: #fff;
 }
 
@@ -55,7 +54,7 @@
 
 .num {
   color: #9e9e9e;
-  font-size: 17px;
+  font-size: 15px;
 }
 
 .num_msg {

@@ -1,122 +1,151 @@
-<view class="user_view" >
-<view class="flex-wrp" style="height: 500px;flex-direction:column;">
+<view class="user_view">
+  <view class="flex-wrp" style="height: 500px;flex-direction:column;">
     <view class="flex-item">
-        <image src="{{ image_url }}" binderror="binderror"
-        class="user_pic"
-        ></image>
+      <image src="{{ image_url }}" binderror="binderror" class="user_pic"></image>
     </view>
     <view class="flex-item" style="margin-top:18px">
-         <text class="name"> {{repo_name}}</text>
+      <text class="name"> {{repo_name}}</text>
     </view>
     <view class="flex-item" style="margin-top:10px">
-          <text class="msg">{{repo_msg}}</text>
+      <text class="msg">{{repo_msg}}</text>
     </view>
   </view>
 </view>
 
-<view  style="flex-direction:row; width:screen.width;">
+<view style="flex-direction:row; width:screen.width;">
   <view class="count_item" style="display:inline-block;">
-  <view style="flex-direction:column;text-align:center;">
-        <view >
+    <view style="flex-direction:column;text-align:center;">
+      <view>
         <text class="num">{{stars}}</text>
-        </view>
-        <view >
-        <text class="num_msg">Stargazers</text>
-        </view>
-  </view>
-  </view>
-
-<view class="count_item" style="display:inline-block;" >
-<view style="flex-direction:column;text-align:center;">
-      <view >
-      <text class="num">{{watchers}}</text>
-      </view>
-      <view >
-      <text class="num_msg">Watchers</text>
-      </view>
-</view>
-</view>
-
-<view class="count_item_right" style="display:inline-block;" >
-<view style="flex-direction:column;text-align:center;">
-      <view >
-      <text class="num">{{forks}}</text>
       </view>
       <view>
-      <text class="num_msg">Forks</text>
+        <text class="num_msg">Stargazers</text>
       </view>
-</view>
-</view>
+    </view>
+  </view>
+
+  <view class="count_item" style="display:inline-block;">
+    <view style="flex-direction:column;text-align:center;">
+      <view>
+        <text class="num">{{watchers}}</text>
+      </view>
+      <view>
+        <text class="num_msg">Watchers</text>
+      </view>
+    </view>
+  </view>
+
+  <view class="count_item_right" style="display:inline-block;">
+    <view style="flex-direction:column;text-align:center;">
+      <view>
+        <text class="num">{{forks}}</text>
+      </view>
+      <view>
+        <text class="num_msg">Forks</text>
+      </view>
+    </view>
+  </view>
 </view>
 <view style="height:20px;background: #E8E8E8;"></view>
 
 <view style="flex-direction:column;">
- <view style="flex-direction:row;height: 50px;">
+  <view style="flex-direction:row;height: 50px;">
     <view class="item_left" style="flex-direction:row;display:inline-block;">
-        <image class="jiantou"  src="../../assets/lock.png" style="vertical-align:middle"></image>
-        <text style="line-height:49px;font-size:16px">{{ private }}</text>
+      <image class="jiantou" src="../../assets/lock.png" style="vertical-align:middle"></image>
+      <text style="line-height:49px;font-size:16px">{{ private }}</text>
     </view>
     <view class="item_right" style="flex-direction:row;display:inline-block;">
 
-        <image class="jiantou"  src="../../assets/lan.png" style="vertical-align:middle"></image>
-        <text style="line-height:50px;font-size:16px">{{ lan }}</text>
+      <image class="jiantou" src="../../assets/lan.png" style="vertical-align:middle"></image>
+      <text style="line-height:50px;font-size:16px">{{ lan }}</text>
     </view>
- </view>
+  </view>
 
- <view style="flex-direction:row;height: 50px;">
+  <view style="flex-direction:row;height: 50px;">
     <view class="item2_left" style="flex-direction:row;display:inline-block;">
-        <image class="jiantou"  src="../../assets/rili.png" style="vertical-align:middle"></image>
-        <text style="line-height:50px;font-size:16px">{{ create_time }}</text>
+      <image class="jiantou" src="../../assets/rili.png" style="vertical-align:middle"></image>
+      <text style="line-height:50px;font-size:16px">{{ create_time }}</text>
     </view>
     <view class="item2_right" style="flex-direction:row;display:inline-block;">
 
-        <image class="jiantou"  src="../../assets/size.png" style="vertical-align:middle"></image>
-        <text style="line-height:50px;font-size:16px">{{ size }}</text>
+      <image class="jiantou" src="../../assets/size.png" style="vertical-align:middle"></image>
+      <text style="line-height:50px;font-size:16px">{{ size }}</text>
     </view>
- </view>
+  </view>
 </view>
 
 <view style="height:20px;background: #E8E8E8;"></view>
 
-<view  style="flex-direction:row;">
-    <view class="btn_item" >
-            <view  catchtap="owner" data-link="{{ owner}}" >
-            <image class="jiantou" src="../../assets/owner.png"  style="vertical-align:middle;line-height:40px;" ></image>
-            <text style="display:inline-block; line-height:40px;font-size:16px">Owner</text>
-            <text style="margin-left:150px;vertical-align:middle;display:inline-block; line-height:40px;font-size:20px;"> {{ owner_name }}</text>
-            
-            </view>
+<view style="flex-direction:row;">
+  <view class="btn_item">
+    <view catchtap="owner" data-link="{{ owner}}">
+      <image class="jiantou" src="../../assets/owner.png" style="vertical-align:middle;line-height:40px;"></image>
+      <text style="display:inline-block; line-height:40px;font-size:16px">Owner</text>
+      <text style="margin-left:150px;vertical-align:middle;display:inline-block; line-height:40px;font-size:20px;"> {{ owner_name }}</text>
+
     </view>
+  </view>
 </view>
 
 
 
-    <view catchtap="code" data-link="{{ code_link}}" class="btn_item" style="flex-direction:row;" >
-            <view style="display:inline-block;">
-            <image class="jiantou" src="../../assets/code.png"  style="vertical-align:middle;line-height:40px;" ></image>
-            </view>
-            <view style="display:inline-block;width:30px">
-            <text style="line-height:40px;font-size:16px;width:30px">Source</text>
-            </view>
-            <view style="display:inline-block;float:right;vertical-align:middle;height:40px;text-align:center">
-            <image  class="jiantou" src="../../assets/jiantou_btn.png" style="margin-right:3px;line-height:20px;vertical-align:middle;margin-top:10px"></image>
-            </view>
-    </view>
+<view catchtap="code" data-link="{{ code_link}}" class="btn_item" style="flex-direction:row;">
+  <view style="display:inline-block;">
+    <image class="jiantou" src="../../assets/code.png" style="vertical-align:middle;line-height:40px;"></image>
+  </view>
+  <view style="display:inline-block;width:30px">
+    <text style="line-height:40px;font-size:16px;width:30px">Source</text>
+  </view>
+  <view style="display:inline-block;float:right;vertical-align:middle;height:40px;text-align:center">
+    <image class="jiantou" src="../../assets/jiantou_btn.png" style="margin-right:3px;line-height:20px;vertical-align:middle;margin-top:10px"></image>
+  </view>
+</view>
 
-        <view catchtap="readme_click" data-link="{{ readme_link}}" class="btn_item" style="flex-direction:row;" >
-            <view style="display:inline-block;">
-            <image class="jiantou" src="../../assets/readme.png"  style="vertical-align:middle;line-height:40px;" ></image>
-            </view>
-            <view style="display:inline-block;width:30px">
-            <text style="line-height:40px;font-size:16px;">Readme</text>
-            </view>
-            <view style="display:inline-block;float:right;vertical-align:middle;height:40px;text-align:center">
-            <image  class="jiantou" src="../../assets/jiantou_btn.png" style="margin-right:3px;line-height:20px;vertical-align:middle;margin-top:10px"></image>
-            </view>
-    </view>
+<view catchtap="readme_click" data-link="{{ readme_link}}" class="btn_item" style="flex-direction:row;">
+  <view style="display:inline-block;">
+    <image class="jiantou" src="../../assets/readme.png" style="vertical-align:middle;line-height:40px;"></image>
+  </view>
+  <view style="display:inline-block;width:30px">
+    <text style="line-height:40px;font-size:16px;">Readme</text>
+  </view>
+  <view style="display:inline-block;float:right;vertical-align:middle;height:40px;text-align:center">
+    <image class="jiantou" src="../../assets/jiantou_btn.png" style="margin-right:3px;line-height:20px;vertical-align:middle;margin-top:10px"></image>
+  </view>
+</view>
 
-    <button open-type="share">分享</button>
-  
+<button open-type="share">分享</button>
+
+<!-- <view>
+  <view class="option" bindtap="star_repo" data-link="{{ index }}" animation="{{animationData+item.url}}">
+    <image class="option_menu" src="{{ star_img}}"></image>
+    <text class="option_menu_size" style="color:{{ star_color }}">{{ stared[index] }}赞</text>
+  </view>
+
+  <view class="option" bindtap="comment_repo" data-link="{{ item.url }}">
+    <image class="option_menu" src="/assets/comment.png"></image>
+    <text class="option_menu_size">评论</text>
+  </view>
+</view>
+
+<view class="r"></view>
+<view class='cmt-wrap'>
+  <view class="like">
+    <image src="../../assets/l.png"></image>
+    <text>xiyouMc,hahah,sdfsdf,sfsd</text>
+  </view>
+  <view style="padding-left:12px;padding-right:5px">
+    <scroll-view class="cmt-list">
+      <view wx:for="{{ list_reply }}" wx:key='item' style="width:100%">
+        <span class="span">{{ item.name }}</span>
+        <text hidden='{{ item.is_reply}}'> :</text>
+        <text hidden='{{ !item.is_reply }}'> @ </text>
+        <span class="span" hidden='{{ !item.is_reply}}'> {{ item.reply_name }}</span>
+        <text hidden='{{ !item.is_reply}}'> :</text>
+        <content>{{ item.content }}</content>
+      </view>
+    </scroll-view>
+  </view>
+</view> -->
 <!--<view class="btn_item" style="flex-direction:row;" catchtap="readme_click" data-link="{{ readme_link}}">
             <view style="display:inline-block;">
                     <image class="jiantou" src="../../assets/readme.png"  style="vertical-align:middle;line-height:40px;" ></image>
@@ -130,8 +159,19 @@
     
 </view>-->
 
- <view class="body-view">
-    <loading hidden="{{hidden}}" bindchange="loadingChange">
-      拼命加载中...
-    </loading>
-  </view>
+<!-- <view style="position: fixed;bottom: 10px;right: 10px;z-index: 888;" catchtap="login">
+  <text style="width:50px;height:50px;border-radius:100px"> 回复 </text>
+</view> -->
+
+
+<!-- <view>
+  <image src="../../assets/like.png" calss='image-style' animation="{{ animCollect }}" bindtap="collect"></image>
+  <image src="../../assets/comment.png" calss='image-style' animation="{{ animTranspond }}" bindtap="transpond"></image>
+  <image src="../../assets/comment.png" calss='image-plus-style' animation="{{ animPlus }}" bindtap="plus"></image>
+</view> -->
+
+<view class="body-view">
+  <loading hidden="{{hidden}}" bindchange="loadingChange">
+    拼命加载中...
+  </loading>
+</view>

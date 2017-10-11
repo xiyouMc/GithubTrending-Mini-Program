@@ -1,0 +1,43 @@
+<!--pages/events/events.wxml-->
+<scroll-view scroll-y="true">
+    <view wx:key="item" wx:for="{{events}}" style="border-bottom: #EDEDED solid 5px;padding-bottom:10px;margin-bottom:10px">
+
+        <view catchtap="intent" data-link="{{item.url}}" style="flex-direction:row;">
+
+            <view style="flex-direction:column;margin-left:20px;">
+                <view style="vertical-align:middle;margin-bottom:5px">
+                    <image class="star" src="../../assets/star-icon.png"></image>
+                    <text style="font-size:9pt;vertical-align:middle;flex:1">{{item.created_at}}</text>
+                </view>
+
+                <view class="flex-wrp" style="flex-direction:row;text-align:center left;">
+                    <view class="flex-item" style="display:inline-block;vertical-align:top">
+                        <image class="user_pic" src="{{item.actor.avatar_url}}"></image>
+                    </view>
+                    <!--text-align:justify-->
+
+                    <view class="flex-item" style="width:250px;display:inline-block;">
+                        <text style="font-size:13pt; color: #4F94CD;font-weight:bold;">{{item.actor.login}}</text>
+                        <text style="font-size:13pt"> {{item.payload.action}} </text>
+                        <text style="font-size:13pt; color: #4F94CD;font-weight:bold;">{{item.repo.branch}}</text>
+                        <text style="font-size:13pt; color: #4F94CD;font-weight:bold;">{{item.repo.fork}}</text>
+                        <text style="font-size:13pt"> {{item.payload.action2}} </text>
+                        <text style="font-size:13pt; color: #4F94CD;font-weight:bold;">{{item.repo.name}}</text>
+                    </view>
+
+
+
+                </view>
+            </view>
+            <!--<view style="float:left;width:300px;flex-direction:column;margin-left:20px">
+                <view>
+                 
+                </view>
+                <view>
+                   
+                </view>
+            </view>-->
+
+        </view>
+    </view>
+</scroll-view>

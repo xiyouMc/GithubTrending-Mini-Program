@@ -1,5 +1,5 @@
 var api = require('../../utils/request_api.js')
-var page =0;
+var page = 0;
 var page_size = 20;
 var sort = "last";
 var is_easy = 0;
@@ -13,7 +13,7 @@ var star_img = [];
 var star_color = [];
 var repo_d;
 var trending_data;
-var GetStared = function (that, res){
+var GetStared = function (that, res) {
   that.setData({
     scrollTop: 0
   })
@@ -42,12 +42,12 @@ var GetStared = function (that, res){
     wx.showNavigationBarLoading();
     var repo_data = res.data;
     repo_d = repo_data;
-   
+
     that.setData({
       stared: stared,
       star_img: star_img,
       star_color: star_color
-    })  
+    })
 
     wx.request({
       url: api.server_api + 'v1/star/status?githubs=' + json + '&username=' + fuck_username,
@@ -72,245 +72,264 @@ var GetStared = function (that, res){
         }
         wx.hideNavigationBarLoading();
       },
-      complete:function(){
+      complete: function () {
         wx.hideNavigationBarLoading();
       }
     })
   }
 }
 // 获取数据的方法，具体怎么获取列表数据大家自行发挥
-var GetList = function(that){
+var GetList = function (that) {
   that.setData({
-    hidden:false
+    hidden: false
   });
   wx.request({
     url: api.server_api + 'v1/trending?since=daily',
-    method:'GET',
+    method: 'GET',
     header: {
       'content-type': 'application/json'
     },
-    success:function(res){
+    success: function (res) {
       console.log(res.data);
       that.setData({
-        list : res.data
+        list: res.data
       });
       trending_data = res;
       GetStared(that, res);
-      
+
       that.setData({
-        hidden:true
+        hidden: true
       });
     }
   });
 };
 Page({
- data:{
-  array: lan,
-  index:0,
-  hidden:true,
-  list:[],
-  scrollTop : 0,
-  scrollHeight:0,
-  user_avatar: "/assets/github_default.png",
-  stared: stared
+  data: {
+    array: lan,
+    index: 0,
+    hidden: true,
+    list: [],
+    scrollTop: 0,
+    scrollHeight: 0,
+    user_avatar: "/assets/github_default.png",
+    stared: stared
 
- },
- onLoad:function(){
-  //  这里要非常注意，微信的scroll-view必须要设置高度才能监听滚动事件，所以，需要在页面的onLoad事件中给scroll-view的高度赋值
-   var that = this;
-   GetList(that);
-   wx.getSystemInfo({
-     success:function(res){
-       console.info(res.windowHeight);
-       that.setData({
-         scrollHeight:res.windowHeight - 100
-       });
-     }
-   });
-   
- },
- onReady:function(){
-   try {
-     wx.setStorageSync("Python", "python");
-     wx.setStorageSync("C", "c");
-     wx.setStorageSync("Go", "go");
-     wx.setStorageSync("HTML", "html");
-     wx.setStorageSync("Java", "java");
-     wx.setStorageSync("Shell", "shell");
-     wx.setStorageSync("C++", "c%2B%2B");
-     wx.setStorageSync("C#", "c#");
-     wx.setStorageSync("Ruby", "ruby");
-     wx.setStorageSync("PHP", "php");
-     wx.setStorageSync("Visual-Basic", "visual-basic");
-     wx.setStorageSync("JavaScript", "javascript");
-     wx.setStorageSync("Swift", "swift");
-     wx.setStorageSync("Groovy", "groovy");
-   } catch (e) { }
- },
- onShow:function(){
-  try{
+  },
+  onLoad: function () {
+
+    //  wx.showModal({
+    //    title: '提示',
+    //    content: '这是一个模态弹窗',
+    //    success: function (res) {
+    //      if (res.confirm) {
+    //        console.log('用户点击确定')
+    //      } else if (res.cancel) {
+    //        console.log('用户点击取消')
+    //      }
+    //    }
+    //  })
+    //  这里要非常注意，微信的scroll-view必须要设置高度才能监听滚动事件，所以，需要在页面的onLoad事件中给scroll-view的高度赋值
     var that = this;
-    var animation = wx.createAnimation({
-      duration: 1000,
-      timingFunction: 'ease',
-    })
+    GetList(that);
+    wx.getSystemInfo({
+      success: function (res) {
+        console.info(res.windowHeight);
+        that.setData({
+          scrollHeight: res.windowHeight - 100
+        });
+      }
+    });
 
-    this.animation = animation
+  },
+  onReady: function () {
+    try {
+      wx.setStorageSync("Python", "python");
+      wx.setStorageSync("C", "c");
+      wx.setStorageSync("Go", "go");
+      wx.setStorageSync("HTML", "html");
+      wx.setStorageSync("Java", "java");
+      wx.setStorageSync("Shell", "shell");
+      wx.setStorageSync("C++", "c%2B%2B");
+      wx.setStorageSync("C#", "c#");
+      wx.setStorageSync("Ruby", "ruby");
+      wx.setStorageSync("PHP", "php");
+      wx.setStorageSync("Visual-Basic", "visual-basic");
+      wx.setStorageSync("JavaScript", "javascript");
+      wx.setStorageSync("Swift", "swift");
+      wx.setStorageSync("Groovy", "groovy");
+    } catch (e) { }
+  },
+  onShow: function () {
+    try {
+      var that = this;
+      var animation = wx.createAnimation({
+        duration: 1000,
+        timingFunction: 'ease',
+      })
 
-    var avatar = wx.getStorageSync("avatar");
-    console.log('avatar' + avatar);
-    if (avatar) {
-      that.setData({
-        user_avatar: avatar
-      })   
-    
-    var logined = wx.getStorageSync('logined')
-    if (logined !== true){
-        GetStared(that, trending_data);     
-        wx.setStorageSync('logined', true) 
-    }
-    }
-  }catch(e){}
+      this.animation = animation
 
- },
- bindDownLoad:function(){
-  //  该方法绑定了页面滑动到底部的事件
-   var that = this;
- },
- scroll:function(event){
-   this.setData({
-    //  scrollTop : event.detail.scrollTop
-   });
- },
- selectLanguage(e){
+      var avatar = wx.getStorageSync("avatar");
+      console.log('avatar' + avatar);
+      if (avatar) {
+        that.setData({
+          user_avatar: avatar
+        })
+
+        var logined = wx.getStorageSync('logined')
+        if (logined !== true) {
+          GetStared(that, trending_data);
+          wx.setStorageSync('logined', true)
+        }
+      }
+    } catch (e) { }
+
+  },
+  bindDownLoad: function () {
+    //  该方法绑定了页面滑动到底部的事件
+    var that = this;
+  },
+  scroll: function (event) {
+    this.setData({
+      //  scrollTop : event.detail.scrollTop
+    });
+  },
+  selectLanguage(e) {
     wx.navigateTo({
       url: '../lan_list/lan_list',
-      success: function(res){
+      success: function (res) {
         // success
       },
-      fail: function(res) {
+      fail: function (res) {
         // fail
       },
-      complete: function(res) {
+      complete: function (res) {
         // complete
       }
     })
- },
- bindPickerChange(e){
-   var that = this; 
-   this.setData({
-     index: e.detail.value,
-     hidden: false
-   });
-   stared = [];
-   star_img = [];
-   star_color = [];
-   repo_d = [];
-   var language = wx.getStorageSync(lan[e.detail.value])
-   wx.request({
-     url: api.server_api + 'v1/trending?since=daily&language=' + language,
-     method: 'GET',
-     header: {
-       'content-type': 'application/json'
-     },
-     success: function (res) {
-       that.setData({
-         list: res.data
-       });
-       that.setData({
-         hidden: true
-       });
-       GetStared(that,res);
-       
+  },
+  bindPickerChange(e) {
+    var that = this;
+    this.setData({
+      index: e.detail.value,
+      hidden: false
+    });
+    stared = [];
+    star_img = [];
+    star_color = [];
+    repo_d = [];
+    var language = wx.getStorageSync(lan[e.detail.value])
+    wx.request({
+      url: api.server_api + 'v1/trending?since=daily&language=' + language,
+      method: 'GET',
+      header: {
+        'content-type': 'application/json'
+      },
+      success: function (res) {
+        that.setData({
+          list: res.data
+        });
+        that.setData({
+          hidden: true
+        });
+        GetStared(that, res);
 
-     }
-   });
 
- },
- cellTap(e){
-  console.log('click')
-  console.log(e.currentTarget.dataset.link)
-  const link = e.currentTarget.dataset.link
-  wx.navigateTo({
-    url: '../detail/detail?url=' + link,
-    success: function(res){
-      // success
-      console.log(res.data)
-    },
-    fail: function(res) {
-      // fail
-      console.log(res.data)
-    },
-    complete: function(res) {
-      // complete
-      console.log(res.data)
+      }
+    });
+
+  },
+  cellTap(e) {
+    console.log('click')
+    console.log(e.currentTarget.dataset.link)
+    const link = e.currentTarget.dataset.link
+    wx.navigateTo({
+      url: '../detail/detail?url=' + link,
+      success: function (res) {
+        // success
+        console.log(res.data)
+      },
+      fail: function (res) {
+        // fail
+        console.log(res.data)
+      },
+      complete: function (res) {
+        // complete
+        console.log(res.data)
+      }
+    })
+  },
+  onPullDownRefresh: function () {
+    console.log("下拉")
+  },
+  wxSearchFn: function (e) {
+    var that = this
+    WxSearch.wxSearchAddHisKey(that);
+    that.setData({
+      hidden: false
+    });
+    console.log(e.data + "Requests!!!!!!!!!!!!")
+    wx.request({
+      url: api.server_api + "v1/repos/search?q=" + search_q,
+      success: function (res) {
+        that.setData({
+          hidden: true
+        });
+        that.setData({
+          list: res.data.items
+        });
+      }
+    })
+  },
+  onShareAppMessage: function () {
+    return {
+      title: 'Github开源社区小程序版',
+      path: '/pages/all_lang/all_lang',
+      success: function (res) {
+        // 转发成功
+      },
+      fail: function (res) {
+        // 转发失败
+      }
     }
-  })
- },
- onPullDownRefresh: function () {
-   console.log("下拉")
- },
- wxSearchFn: function (e) {
-   var that = this
-   WxSearch.wxSearchAddHisKey(that);
-   that.setData({
-     hidden: false
-   });
-   console.log(e.data + "Requests!!!!!!!!!!!!")
-   wx.request({
-     url: api.server_api + "v1/repos/search?q=" + search_q,
-     success: function (res) {
-       that.setData({
-         hidden: true
-       });
-       that.setData({
-         list: res.data.items
-       });
-     }
-   })
- },
- onShareAppMessage: function () {
-   return {
-     title: 'Github开源社区小程序版',
-     path: '/pages/all_lang/all_lang',
-     success: function (res) {
-       // 转发成功
-     },
-     fail: function (res) {
-       // 转发失败
-     }
-   }
- },
- login:function(){
-   wx.navigateTo({
-     url: '../login/login',
-   })
- },
- star_repo:function(e){
-   console.log(!repo_d)
-   if (!repo_d){
-     wx.showToast({
-       title: '请先登录！！！',
-     })
-     wx.navigateTo({
-       url: '../login/login',
-     });
-     return;
-   }
-   var that = this;
-   const index = e.currentTarget.dataset.link;
-   console.log(index);
-  //  this.animation.rotate(45).scale(2, 2).step()
-  //  const new_anim = 'animationData' + link;
-  //  this.setData({
-  //    new_anim: this.animation.export()
-  //  })
-   const github_name = repo_d[index].owner.login + '/' + repo_d[index].name
-   var fuck_username = wx.getStorageSync("fuck_username");
-   console.log(fuck_username)
-   if (fuck_username != 0) {
+  },
+  login: function () {
+    var fuck_username = wx.getStorageSync("fuck_username");
+    if (fuck_username == 0) {
+      wx.navigateTo({
+        url: '../login/login',
+      })
+    }else{
+      wx.navigateTo({
+        url: '../user/userinfo',
+      })
+    }
+  },
+  star_repo: function (e) {
+    console.log(!repo_d)
+    if (!repo_d) {
+      wx.showToast({
+        title: '请先登录！！！',
+      })
+      wx.navigateTo({
+        url: '../login/login',
+      });
+      return;
+    }
+    var that = this;
+    const index = e.currentTarget.dataset.link;
+    console.log(index);
+    //  this.animation.rotate(45).scale(2, 2).step()
+    //  const new_anim = 'animationData' + link;
+    //  this.setData({
+    //    new_anim: this.animation.export()
+    //  })
+    const github_name = repo_d[index].owner.login + '/' + repo_d[index].name
+    var fuck_username = wx.getStorageSync("fuck_username");
+    console.log(fuck_username)
+    if (fuck_username != 0) {
 
-     if(stared[index] == '已'){
+      if (stared[index] == '已') {
         stared[index] = ''
         star_img[index] = '/assets/like.png'
         star_color[index] = '#030303'
@@ -320,70 +339,70 @@ Page({
           star_color: star_color
         })
         wx.request({
-          url: api.server_api + 'v1/unstar?github='+
+          url: api.server_api + 'v1/unstar?github=' +
           github_name + '&username=' + fuck_username,
-          success:function(e){
-              console.log(e.data)
-              repo_d[index].stargazers_count = repo_d[index].stargazers_count - 1;
-              that.setData({
-                list: repo_d
-              })
-              wx.showToast({
-                title: 'UnStar',
-              })
-              console.log(repo_d[index].stargazers_count)
+          success: function (e) {
+            console.log(e.data)
+            repo_d[index].stargazers_count = repo_d[index].stargazers_count - 1;
+            that.setData({
+              list: repo_d
+            })
+            wx.showToast({
+              title: 'UnStar',
+            })
+            console.log(repo_d[index].stargazers_count)
           }
         })
-     }else{
-       stared[index] = '已';
-       star_img[index] = '/assets/stared.png';
-       star_color[index] = '#3cc51f'
-       that.setData({
-         stared: stared,
-         star_img: star_img,
-         star_color: star_color
-       })
-       console.log(api.server_api + 'v1/star?github=' + github_name + '&username=' + fuck_username)
-       wx.request({
-         url: api.server_api + 'v1/star?github=' + github_name + '&username=' + fuck_username,
-         success: function (e) {
-           console.log(e.data)
-           repo_d[index].stargazers_count = repo_d[index].stargazers_count + 1;
-           that.setData({
-             list: repo_d
-           })
-           wx.showToast({
-             title: 'Star',
-           })
-           console.log(repo_d[index].stargazers_count)
-         }
-       })
-     } 
-   }
- },
- comment_repo:function(e){
-   const link = e.currentTarget.dataset.link
-   wx.showToast({
-     title: '敬请期待',
-   })
- },
- share_repo:function(e){
-   const link = e.currentTarget.dataset.link
-   console.log(link)
-   wx.navigateTo({
-    url: '../detail/detail?url=' + link,
-    success: function(res){
-      // success
-      console.log(res.data)
-    },
-    fail: function(res) {
-      // fail
-      console.log(res.data)
-    },
-    complete: function(res) {
-      // complete
-      console.log(res.data)
+      } else {
+        stared[index] = '已';
+        star_img[index] = '/assets/stared.png';
+        star_color[index] = '#3cc51f'
+        that.setData({
+          stared: stared,
+          star_img: star_img,
+          star_color: star_color
+        })
+        console.log(api.server_api + 'v1/star?github=' + github_name + '&username=' + fuck_username)
+        wx.request({
+          url: api.server_api + 'v1/star?github=' + github_name + '&username=' + fuck_username,
+          success: function (e) {
+            console.log(e.data)
+            repo_d[index].stargazers_count = repo_d[index].stargazers_count + 1;
+            that.setData({
+              list: repo_d
+            })
+            wx.showToast({
+              title: 'Star',
+            })
+            console.log(repo_d[index].stargazers_count)
+          }
+        })
+      }
     }
-  })
- }
+  },
+  comment_repo: function (e) {
+    const link = e.currentTarget.dataset.link
+    wx.showToast({
+      title: '敬请期待',
+    })
+  },
+  share_repo: function (e) {
+    const link = e.currentTarget.dataset.link
+    console.log(link)
+    wx.navigateTo({
+      url: '../detail/detail?url=' + link,
+      success: function (res) {
+        // success
+        console.log(res.data)
+      },
+      fail: function (res) {
+        // fail
+        console.log(res.data)
+      },
+      complete: function (res) {
+        // complete
+        console.log(res.data)
+      }
+    })
+  }
 })
