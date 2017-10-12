@@ -10,7 +10,6 @@
   text-align: center;
   /*border: green solid 1px;*/
   width: screen.width;
-  height: 230px;
   vertical-align: middle;
   flex-direction: column;
 }

@@ -299,9 +299,9 @@ Page({
       wx.navigateTo({
         url: '../login/login',
       })
-    }else{
+    } else {
       wx.navigateTo({
-        url: '../user/userinfo',
+        url: '../user/userinfo?username=' + wx.getStorageSync('username'),
       })
     }
   },

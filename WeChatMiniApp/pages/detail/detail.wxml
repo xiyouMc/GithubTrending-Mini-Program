@@ -1,5 +1,5 @@
 <view class="user_view">
-  <view class="flex-wrp" style="height: 500px;flex-direction:column;">
+  <view class="flex-wrp" style="flex-direction:column;">
     <view class="flex-item">
       <image src="{{ image_url }}" binderror="binderror" class="user_pic"></image>
     </view>
@@ -81,7 +81,7 @@
     <view catchtap="owner" data-link="{{ owner}}">
       <image class="jiantou" src="../../assets/owner.png" style="vertical-align:middle;line-height:40px;"></image>
       <text style="display:inline-block; line-height:40px;font-size:16px">Owner</text>
-      <text style="margin-left:150px;vertical-align:middle;display:inline-block; line-height:40px;font-size:20px;"> {{ owner_name }}</text>
+      <text style="margin-left:150px;vertical-align:middle;display:inline-block; line-height:40px;font-size:20px;width:50px"> {{ owner_name }}</text>
 
     </view>
   </view>

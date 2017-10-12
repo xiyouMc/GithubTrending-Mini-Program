@@ -17,12 +17,12 @@
                     <!--text-align:justify-->
 
                     <view class="flex-item" style="width:250px;display:inline-block;">
-                        <text style="font-size:13pt; color: #4F94CD;font-weight:bold;">{{item.actor.login}}</text>
+                        <text catchtap="actor" data-link="{{item.actor.login}}" style="font-size:13pt; color: #4F94CD;font-weight:bold;">{{item.actor.login}}</text>
                         <text style="font-size:13pt"> {{item.payload.action}} </text>
-                        <text style="font-size:13pt; color: #4F94CD;font-weight:bold;">{{item.repo.branch}}</text>
-                        <text style="font-size:13pt; color: #4F94CD;font-weight:bold;">{{item.repo.fork}}</text>
+                        <text catchtap="branch" data-link="{{item.repo.branch}}" style="font-size:13pt; color: #4F94CD;font-weight:bold;">{{item.repo.branch}}</text>
+                        <text catchtap="fork" data-link="{{item.repo.fork}}" style="font-size:13pt; color: #4F94CD;font-weight:bold;">{{item.repo.fork}}</text>
                         <text style="font-size:13pt"> {{item.payload.action2}} </text>
-                        <text style="font-size:13pt; color: #4F94CD;font-weight:bold;">{{item.repo.name}}</text>
+                        <text catchtap="orgRepo" data-link="{{item.repo.name}}" style="font-size:13pt; color: #4F94CD;font-weight:bold;">{{item.repo.name}}</text>
                     </view>
 
 

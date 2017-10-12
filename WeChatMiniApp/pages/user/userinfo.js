@@ -21,7 +21,7 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    const name = wx.getStorageSync('username')
+    const name = options.username
     console.log(api.server_api + 'v1/repos?github=https://api.github.com/users/' + name)
     const that = this
 
@@ -32,18 +32,27 @@ Page({
       // header: {}, // 设置请求的 header
       success: function (res) {
         // success
-        console.log(res.data.received_events_url)
+        console.log(res.data)
         that.setData({
           user_avatar: res.data.avatar_url,
           user_name: res.data.login,
           user_desc: res.data.bio,
           followers: res.data.followers,
           following: res.data.following,
-          events: res.data.received_events_url,
           gists_url: res.data.gists_url,
           organizations_url: res.data.organizations_url,
           repos_url: res.data.repos_url
         })
+
+        if (wx.getStorageSync('username') == name) {
+          that.setData({
+            events: res.data.received_events_url,
+          })
+        } else {
+          that.setData({
+            events: res.data.events_url.replace('{/privacy}', ''),
+          })
+        }
       },
       fail: function () {
         // fail
